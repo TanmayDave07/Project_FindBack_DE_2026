@@ -3,7 +3,7 @@
   "group_lead": { "name": "Yashra Panghal", "enrollment_no": "2501010526", "github": "yashrajhuntmi7" },
   "members": [
     { "name": "Tanmay Dave", "enrollment_no": "2501010475", "github": "TanmayDave07" },
-    { "name": "", "enrollment_no": "", "github": "" },
+    { "name": "Ajay Kumar", "enrollment_no": "2501010040", "github": "AjayKumar026" },
     { "name": "", "enrollment_no": "", "github": "" }
   ],
   "postgres_version": "18.6",
