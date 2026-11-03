@@ -1,10 +1,10 @@
 {
   "team_number": "T0068",
-  "group_lead": { "name": "Yashra Panghal", "enrollment_no": "2501010526", "github": "yashrajhuntmi7" },
+  "group_lead": { "name": "Yashraj Panghal", "enrollment_no": "2501010526", "github": "yashrajhuntmi7" },
   "members": [
     { "name": "Tanmay Dave", "enrollment_no": "2501010475", "github": "TanmayDave07" },
     { "name": "Ajay Kumar", "enrollment_no": "2501010040", "github": "AjayKumar026" },
-    { "name": "", "enrollment_no": "", "github": "" }
+    { "name": "Harsh", "enrollment_no": "2501010725", "github": "HarshNST" }
   ],
   "postgres_version": "18.6",
   "laptop_used_for_benchmarks": "MacBook Pro, Apple M4, 16GB RAM"
