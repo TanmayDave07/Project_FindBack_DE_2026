@@ -22,12 +22,12 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead | Yashra Panghal| 2501010526 | yashrajhuntmi7 |
+| Member 2 | Tanmay Dave | 2501010475| TanmayDave07 |
+| Member 3 |  | |  |
+| Member 4 | | |  |
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
+**Team No.:** T0068 · **Section:** E · **Repository URL:** https://github.com/TanmayDave07/Project_FindBack_DE_2026 
 
 ---
 
