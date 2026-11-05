@@ -24,8 +24,8 @@
 |------|------|----------------|-----------------|
 | Group Lead | Yashra Panghal| 2501010526 | yashrajhuntmi7 |
 | Member 2 | Tanmay Dave | 2501010475| TanmayDave07 |
-| Member 3 |  | |  |
-| Member 4 | | |  |
+| Member 3 | Ajay Kumar | 2501010040 | AjayKumar026 |
+| Member 4 | Harsh Tomar | 2501010725 | HarshNST |Markdown Preview GitHub Styling
 
 **Team No.:** T0068 · **Section:** E · **Repository URL:** https://github.com/TanmayDave07/Project_FindBack_DE_2026 
 
@@ -218,6 +218,20 @@ The helper script does all of this for you:
 # → benchmarks/results/baseline/R01.txt …     (full plans of all 3 runs)
 ```
 > ⚠️ One of the 30 queries takes **several seconds** on the seed data. That's intentional. Let it finish, and don't skip it.
+
+```drawio width=800
+<mxfile>
+  <diagram id="default" name="Page-1">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+```
+
 
 ### 3.2 Deliverable: the timing table
 In `docs/03_baseline_timings.md`, fill this table for **all 30** queries:
