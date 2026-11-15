@@ -378,6 +378,8 @@ Expected from CSV inspection: **0**.
 
 ## 7. ER diagram
 
+![Spotify Music Streaming Database ER Diagram](../diagrams/er_diagram.png)
+
 ```mermaid
 erDiagram
     ARTISTS ||--o{ ALBUMS : releases
