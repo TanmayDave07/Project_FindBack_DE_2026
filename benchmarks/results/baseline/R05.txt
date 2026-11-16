@@ -1,0 +1,93 @@
+=== R05 run 1 ===
+GroupAggregate  (cost=16.15..136.74 rows=14 width=51) (actual time=0.258..0.267 rows=9 loops=1)
+  Group Key: pt."position", t.title
+  Buffers: shared hit=99
+  ->  Incremental Sort  (cost=16.15..136.46 rows=14 width=45) (actual time=0.252..0.253 rows=12 loops=1)
+        Sort Key: pt."position", t.title, ta.role DESC, ar.artist_name
+        Presorted Key: pt."position"
+        Full-sort Groups: 1  Sort Method: quicksort  Average Memory: 25kB  Peak Memory: 25kB
+        Buffers: shared hit=99
+        ->  Nested Loop  (cost=1.16..136.01 rows=14 width=45) (actual time=0.047..0.218 rows=12 loops=1)
+              Buffers: shared hit=93
+              ->  Nested Loop  (cost=0.88..131.80 rows=14 width=31) (actual time=0.042..0.178 rows=12 loops=1)
+                    Buffers: shared hit=57
+                    ->  Nested Loop  (cost=0.58..127.47 rows=12 width=27) (actual time=0.028..0.099 rows=9 loops=1)
+                          Buffers: shared hit=30
+                          ->  Index Scan using pk_playlist_tracks on playlist_tracks pt  (cost=0.29..27.75 rows=12 width=8) (actual time=0.014..0.016 rows=9 loops=1)
+                                Index Cond: (playlist_id = 501)
+                                Buffers: shared hit=3
+                          ->  Index Scan using pk_tracks on tracks t  (cost=0.29..8.31 rows=1 width=19) (actual time=0.008..0.008 rows=1 loops=9)
+                                Index Cond: (track_id = pt.track_id)
+                                Buffers: shared hit=27
+                    ->  Index Scan using pk_track_artists on track_artists ta  (cost=0.29..0.35 rows=1 width=16) (actual time=0.008..0.008 rows=1 loops=9)
+                          Index Cond: (track_id = t.track_id)
+                          Buffers: shared hit=27
+              ->  Index Scan using pk_artists on artists ar  (cost=0.28..0.30 rows=1 width=22) (actual time=0.003..0.003 rows=1 loops=12)
+                    Index Cond: (artist_id = ta.artist_id)
+                    Buffers: shared hit=36
+Planning:
+  Buffers: shared hit=268
+Planning Time: 0.849 ms
+Execution Time: 0.361 ms
+=== R05 run 2 ===
+GroupAggregate  (cost=16.15..136.74 rows=14 width=51) (actual time=0.243..0.252 rows=9 loops=1)
+  Group Key: pt."position", t.title
+  Buffers: shared hit=99
+  ->  Incremental Sort  (cost=16.15..136.46 rows=14 width=45) (actual time=0.238..0.239 rows=12 loops=1)
+        Sort Key: pt."position", t.title, ta.role DESC, ar.artist_name
+        Presorted Key: pt."position"
+        Full-sort Groups: 1  Sort Method: quicksort  Average Memory: 25kB  Peak Memory: 25kB
+        Buffers: shared hit=99
+        ->  Nested Loop  (cost=1.16..136.01 rows=14 width=45) (actual time=0.044..0.206 rows=12 loops=1)
+              Buffers: shared hit=93
+              ->  Nested Loop  (cost=0.88..131.80 rows=14 width=31) (actual time=0.039..0.175 rows=12 loops=1)
+                    Buffers: shared hit=57
+                    ->  Nested Loop  (cost=0.58..127.47 rows=12 width=27) (actual time=0.026..0.092 rows=9 loops=1)
+                          Buffers: shared hit=30
+                          ->  Index Scan using pk_playlist_tracks on playlist_tracks pt  (cost=0.29..27.75 rows=12 width=8) (actual time=0.012..0.014 rows=9 loops=1)
+                                Index Cond: (playlist_id = 501)
+                                Buffers: shared hit=3
+                          ->  Index Scan using pk_tracks on tracks t  (cost=0.29..8.31 rows=1 width=19) (actual time=0.008..0.008 rows=1 loops=9)
+                                Index Cond: (track_id = pt.track_id)
+                                Buffers: shared hit=27
+                    ->  Index Scan using pk_track_artists on track_artists ta  (cost=0.29..0.35 rows=1 width=16) (actual time=0.008..0.009 rows=1 loops=9)
+                          Index Cond: (track_id = t.track_id)
+                          Buffers: shared hit=27
+              ->  Index Scan using pk_artists on artists ar  (cost=0.28..0.30 rows=1 width=22) (actual time=0.002..0.002 rows=1 loops=12)
+                    Index Cond: (artist_id = ta.artist_id)
+                    Buffers: shared hit=36
+Planning:
+  Buffers: shared hit=268
+Planning Time: 0.815 ms
+Execution Time: 0.344 ms
+=== R05 run 3 ===
+GroupAggregate  (cost=16.15..136.74 rows=14 width=51) (actual time=0.261..0.270 rows=9 loops=1)
+  Group Key: pt."position", t.title
+  Buffers: shared hit=99
+  ->  Incremental Sort  (cost=16.15..136.46 rows=14 width=45) (actual time=0.254..0.255 rows=12 loops=1)
+        Sort Key: pt."position", t.title, ta.role DESC, ar.artist_name
+        Presorted Key: pt."position"
+        Full-sort Groups: 1  Sort Method: quicksort  Average Memory: 25kB  Peak Memory: 25kB
+        Buffers: shared hit=99
+        ->  Nested Loop  (cost=1.16..136.01 rows=14 width=45) (actual time=0.049..0.217 rows=12 loops=1)
+              Buffers: shared hit=93
+              ->  Nested Loop  (cost=0.88..131.80 rows=14 width=31) (actual time=0.045..0.187 rows=12 loops=1)
+                    Buffers: shared hit=57
+                    ->  Nested Loop  (cost=0.58..127.47 rows=12 width=27) (actual time=0.030..0.108 rows=9 loops=1)
+                          Buffers: shared hit=30
+                          ->  Index Scan using pk_playlist_tracks on playlist_tracks pt  (cost=0.29..27.75 rows=12 width=8) (actual time=0.015..0.017 rows=9 loops=1)
+                                Index Cond: (playlist_id = 501)
+                                Buffers: shared hit=3
+                          ->  Index Scan using pk_tracks on tracks t  (cost=0.29..8.31 rows=1 width=19) (actual time=0.009..0.009 rows=1 loops=9)
+                                Index Cond: (track_id = pt.track_id)
+                                Buffers: shared hit=27
+                    ->  Index Scan using pk_track_artists on track_artists ta  (cost=0.29..0.35 rows=1 width=16) (actual time=0.008..0.008 rows=1 loops=9)
+                          Index Cond: (track_id = t.track_id)
+                          Buffers: shared hit=27
+              ->  Index Scan using pk_artists on artists ar  (cost=0.28..0.30 rows=1 width=22) (actual time=0.002..0.002 rows=1 loops=12)
+                    Index Cond: (artist_id = ta.artist_id)
+                    Buffers: shared hit=36
+Planning:
+  Buffers: shared hit=268
+Planning Time: 0.954 ms
+Execution Time: 0.372 ms

@@ -1,0 +1,33 @@
+=== W01 run 1 ===
+Insert on streams  (cost=0.00..0.01 rows=0 width=0) (actual time=0.198..0.198 rows=0 loops=1)
+  Buffers: shared hit=60
+  ->  Result  (cost=0.00..0.01 rows=1 width=146) (actual time=0.005..0.005 rows=1 loops=1)
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.071 ms
+Trigger for constraint fk_streams_user: time=0.984 calls=1
+Trigger for constraint fk_streams_track: time=0.210 calls=1
+Trigger for constraint fk_streams_playlist: time=0.016 calls=1
+Execution Time: 1.431 ms
+=== W01 run 2 ===
+Insert on streams  (cost=0.00..0.01 rows=0 width=0) (actual time=0.233..0.233 rows=0 loops=1)
+  Buffers: shared hit=60 dirtied=1
+  ->  Result  (cost=0.00..0.01 rows=1 width=146) (actual time=0.004..0.004 rows=1 loops=1)
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.066 ms
+Trigger for constraint fk_streams_user: time=0.445 calls=1
+Trigger for constraint fk_streams_track: time=0.170 calls=1
+Trigger for constraint fk_streams_playlist: time=0.017 calls=1
+Execution Time: 0.885 ms
+=== W01 run 3 ===
+Insert on streams  (cost=0.00..0.01 rows=0 width=0) (actual time=0.188..0.188 rows=0 loops=1)
+  Buffers: shared hit=60 dirtied=1
+  ->  Result  (cost=0.00..0.01 rows=1 width=146) (actual time=0.004..0.004 rows=1 loops=1)
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.067 ms
+Trigger for constraint fk_streams_user: time=0.465 calls=1
+Trigger for constraint fk_streams_track: time=0.169 calls=1
+Trigger for constraint fk_streams_playlist: time=0.016 calls=1
+Execution Time: 0.859 ms

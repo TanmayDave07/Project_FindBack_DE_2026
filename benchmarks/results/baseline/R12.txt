@@ -1,0 +1,105 @@
+=== R12 run 1 ===
+Limit  (cost=8060.31..8329.76 rows=200 width=20) (actual time=42.463..47.103 rows=200 loops=1)
+  Buffers: shared hit=7112
+  ->  Nested Loop  (cost=8060.31..20457.95 rows=9202 width=20) (actual time=42.461..47.082 rows=200 loops=1)
+        Buffers: shared hit=7112
+        ->  Gather Merge  (cost=8060.02..11206.40 rows=27607 width=20) (actual time=42.147..44.781 rows=1004 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=4100
+              ->  Sort  (cost=7060.01..7100.61 rows=16239 width=20) (actual time=40.074..40.139 rows=1076 loops=2)
+                    Sort Key: s.started_at DESC
+                    Sort Method: quicksort  Memory: 1127kB
+                    Buffers: shared hit=4100
+                    Worker 0:  Sort Method: quicksort  Memory: 954kB
+                    ->  Hash Join  (cost=1491.68..5924.32 rows=16239 width=20) (actual time=8.844..36.814 rows=14002 loops=2)
+                          Hash Cond: (s.track_id = t.track_id)
+                          Buffers: shared hit=4063
+                          ->  Parallel Seq Scan on streams s  (cost=0.00..4046.59 rows=147059 width=20) (actual time=0.008..11.454 rows=125000 loops=2)
+                                Buffers: shared hit=2576
+                          ->  Hash  (cost=1398.08..1398.08 rows=7488 width=4) (actual time=8.747..8.747 rows=7576 loops=2)
+                                Buckets: 8192  Batches: 1  Memory Usage: 331kB
+                                Buffers: shared hit=1440
+                                ->  Seq Scan on tracks t  (cost=0.00..1398.08 rows=7488 width=4) (actual time=0.013..7.429 rows=7576 loops=2)
+                                      Filter: explicit
+                                      Rows Removed by Filter: 60232
+                                      Buffers: shared hit=1440
+        ->  Index Scan using pk_users on users u  (cost=0.29..0.33 rows=1 width=8) (actual time=0.002..0.002 rows=0 loops=1004)
+              Index Cond: (user_id = s.user_id)
+              Filter: (age(((s.started_at)::date)::timestamp with time zone, (birth_date)::timestamp with time zone) < '18 years'::interval)
+              Rows Removed by Filter: 1
+              Buffers: shared hit=3012
+Planning:
+  Buffers: shared hit=365
+Planning Time: 1.221 ms
+Execution Time: 47.283 ms
+=== R12 run 2 ===
+Limit  (cost=8060.31..8329.76 rows=200 width=20) (actual time=39.125..43.547 rows=200 loops=1)
+  Buffers: shared hit=7112
+  ->  Nested Loop  (cost=8060.31..20457.95 rows=9202 width=20) (actual time=39.124..43.528 rows=200 loops=1)
+        Buffers: shared hit=7112
+        ->  Gather Merge  (cost=8060.02..11206.40 rows=27607 width=20) (actual time=39.062..41.571 rows=1004 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=4100
+              ->  Sort  (cost=7060.01..7100.61 rows=16239 width=20) (actual time=37.439..37.502 rows=1099 loops=2)
+                    Sort Key: s.started_at DESC
+                    Sort Method: quicksort  Memory: 998kB
+                    Buffers: shared hit=4100
+                    Worker 0:  Sort Method: quicksort  Memory: 1084kB
+                    ->  Hash Join  (cost=1491.68..5924.32 rows=16239 width=20) (actual time=5.877..34.653 rows=14002 loops=2)
+                          Hash Cond: (s.track_id = t.track_id)
+                          Buffers: shared hit=4063
+                          ->  Parallel Seq Scan on streams s  (cost=0.00..4046.59 rows=147059 width=20) (actual time=0.007..13.337 rows=125000 loops=2)
+                                Buffers: shared hit=2576
+                          ->  Hash  (cost=1398.08..1398.08 rows=7488 width=4) (actual time=5.802..5.803 rows=7576 loops=2)
+                                Buckets: 8192  Batches: 1  Memory Usage: 331kB
+                                Buffers: shared hit=1440
+                                ->  Seq Scan on tracks t  (cost=0.00..1398.08 rows=7488 width=4) (actual time=0.010..4.893 rows=7576 loops=2)
+                                      Filter: explicit
+                                      Rows Removed by Filter: 60232
+                                      Buffers: shared hit=1440
+        ->  Index Scan using pk_users on users u  (cost=0.29..0.33 rows=1 width=8) (actual time=0.002..0.002 rows=0 loops=1004)
+              Index Cond: (user_id = s.user_id)
+              Filter: (age(((s.started_at)::date)::timestamp with time zone, (birth_date)::timestamp with time zone) < '18 years'::interval)
+              Rows Removed by Filter: 1
+              Buffers: shared hit=3012
+Planning:
+  Buffers: shared hit=365
+Planning Time: 0.762 ms
+Execution Time: 43.779 ms
+=== R12 run 3 ===
+Limit  (cost=8060.31..8329.76 rows=200 width=20) (actual time=38.770..43.674 rows=200 loops=1)
+  Buffers: shared hit=7112
+  ->  Nested Loop  (cost=8060.31..20457.95 rows=9202 width=20) (actual time=38.768..43.654 rows=200 loops=1)
+        Buffers: shared hit=7112
+        ->  Gather Merge  (cost=8060.02..11206.40 rows=27607 width=20) (actual time=38.706..41.581 rows=1004 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=4100
+              ->  Sort  (cost=7060.01..7100.61 rows=16239 width=20) (actual time=36.857..36.924 rows=1121 loops=2)
+                    Sort Key: s.started_at DESC
+                    Sort Method: quicksort  Memory: 1125kB
+                    Buffers: shared hit=4100
+                    Worker 0:  Sort Method: quicksort  Memory: 957kB
+                    ->  Hash Join  (cost=1491.68..5924.32 rows=16239 width=20) (actual time=7.231..33.893 rows=14002 loops=2)
+                          Hash Cond: (s.track_id = t.track_id)
+                          Buffers: shared hit=4063
+                          ->  Parallel Seq Scan on streams s  (cost=0.00..4046.59 rows=147059 width=20) (actual time=0.007..11.069 rows=125000 loops=2)
+                                Buffers: shared hit=2576
+                          ->  Hash  (cost=1398.08..1398.08 rows=7488 width=4) (actual time=7.152..7.153 rows=7576 loops=2)
+                                Buckets: 8192  Batches: 1  Memory Usage: 331kB
+                                Buffers: shared hit=1440
+                                ->  Seq Scan on tracks t  (cost=0.00..1398.08 rows=7488 width=4) (actual time=0.010..5.702 rows=7576 loops=2)
+                                      Filter: explicit
+                                      Rows Removed by Filter: 60232
+                                      Buffers: shared hit=1440
+        ->  Index Scan using pk_users on users u  (cost=0.29..0.33 rows=1 width=8) (actual time=0.002..0.002 rows=0 loops=1004)
+              Index Cond: (user_id = s.user_id)
+              Filter: (age(((s.started_at)::date)::timestamp with time zone, (birth_date)::timestamp with time zone) < '18 years'::interval)
+              Rows Removed by Filter: 1
+              Buffers: shared hit=3012
+Planning:
+  Buffers: shared hit=365
+Planning Time: 0.775 ms
+Execution Time: 43.868 ms

@@ -1,0 +1,75 @@
+=== W03 run 1 ===
+Insert on playlist_tracks  (cost=8.95..8.97 rows=0 width=0) (actual time=0.110..0.111 rows=0 loops=1)
+  Buffers: shared hit=16
+  ->  Subquery Scan on "*SELECT*"  (cost=8.95..8.97 rows=1 width=24) (actual time=0.046..0.047 rows=1 loops=1)
+        Buffers: shared hit=6
+        ->  Result  (cost=8.95..8.96 rows=1 width=48) (actual time=0.045..0.046 rows=1 loops=1)
+              Buffers: shared hit=6
+              InitPlan 1 (returns $0)
+                ->  Index Scan using pk_playlists on playlists  (cost=0.29..8.30 rows=1 width=4) (actual time=0.012..0.013 rows=1 loops=1)
+                      Index Cond: (playlist_id = 501)
+                      Buffers: shared hit=3
+              InitPlan 2 (returns $1)
+                ->  Limit  (cost=0.29..0.65 rows=1 width=4) (actual time=0.029..0.029 rows=1 loops=1)
+                      Buffers: shared hit=3
+                      ->  Index Only Scan Backward using pk_playlist_tracks on playlist_tracks playlist_tracks_1  (cost=0.29..4.53 rows=12 width=4) (actual time=0.028..0.028 rows=1 loops=1)
+                            Index Cond: ((playlist_id = 501) AND ("position" IS NOT NULL))
+                            Heap Fetches: 0
+                            Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=102
+Planning Time: 0.446 ms
+Trigger for constraint fk_playlist_tracks_playlist: time=0.183 calls=1
+Trigger for constraint fk_playlist_tracks_track: time=0.162 calls=1
+Trigger for constraint fk_playlist_tracks_added_by: time=0.136 calls=1
+Execution Time: 0.651 ms
+=== W03 run 2 ===
+Insert on playlist_tracks  (cost=8.95..8.97 rows=0 width=0) (actual time=0.105..0.106 rows=0 loops=1)
+  Buffers: shared hit=17
+  ->  Subquery Scan on "*SELECT*"  (cost=8.95..8.97 rows=1 width=24) (actual time=0.056..0.057 rows=1 loops=1)
+        Buffers: shared hit=7
+        ->  Result  (cost=8.95..8.96 rows=1 width=48) (actual time=0.055..0.056 rows=1 loops=1)
+              Buffers: shared hit=7
+              InitPlan 1 (returns $0)
+                ->  Index Scan using pk_playlists on playlists  (cost=0.29..8.30 rows=1 width=4) (actual time=0.012..0.012 rows=1 loops=1)
+                      Index Cond: (playlist_id = 501)
+                      Buffers: shared hit=3
+              InitPlan 2 (returns $1)
+                ->  Limit  (cost=0.29..0.65 rows=1 width=4) (actual time=0.036..0.037 rows=1 loops=1)
+                      Buffers: shared hit=4
+                      ->  Index Only Scan Backward using pk_playlist_tracks on playlist_tracks playlist_tracks_1  (cost=0.29..4.53 rows=12 width=4) (actual time=0.036..0.036 rows=1 loops=1)
+                            Index Cond: ((playlist_id = 501) AND ("position" IS NOT NULL))
+                            Heap Fetches: 1
+                            Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=102
+Planning Time: 0.363 ms
+Trigger for constraint fk_playlist_tracks_playlist: time=0.157 calls=1
+Trigger for constraint fk_playlist_tracks_track: time=0.203 calls=1
+Trigger for constraint fk_playlist_tracks_added_by: time=0.139 calls=1
+Execution Time: 0.663 ms
+=== W03 run 3 ===
+Insert on playlist_tracks  (cost=8.95..8.97 rows=0 width=0) (actual time=0.125..0.126 rows=0 loops=1)
+  Buffers: shared hit=17
+  ->  Subquery Scan on "*SELECT*"  (cost=8.95..8.97 rows=1 width=24) (actual time=0.054..0.055 rows=1 loops=1)
+        Buffers: shared hit=7
+        ->  Result  (cost=8.95..8.96 rows=1 width=48) (actual time=0.053..0.054 rows=1 loops=1)
+              Buffers: shared hit=7
+              InitPlan 1 (returns $0)
+                ->  Index Scan using pk_playlists on playlists  (cost=0.29..8.30 rows=1 width=4) (actual time=0.011..0.012 rows=1 loops=1)
+                      Index Cond: (playlist_id = 501)
+                      Buffers: shared hit=3
+              InitPlan 2 (returns $1)
+                ->  Limit  (cost=0.29..0.65 rows=1 width=4) (actual time=0.036..0.036 rows=1 loops=1)
+                      Buffers: shared hit=4
+                      ->  Index Only Scan Backward using pk_playlist_tracks on playlist_tracks playlist_tracks_1  (cost=0.29..4.53 rows=12 width=4) (actual time=0.035..0.035 rows=1 loops=1)
+                            Index Cond: ((playlist_id = 501) AND ("position" IS NOT NULL))
+                            Heap Fetches: 1
+                            Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=102
+Planning Time: 0.338 ms
+Trigger for constraint fk_playlist_tracks_playlist: time=0.161 calls=1
+Trigger for constraint fk_playlist_tracks_track: time=0.144 calls=1
+Trigger for constraint fk_playlist_tracks_added_by: time=0.125 calls=1
+Execution Time: 0.609 ms
