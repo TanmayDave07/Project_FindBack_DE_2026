@@ -1,0 +1,132 @@
+=== R19 run 1 ===
+Sort  (cost=10361.81..10362.65 rows=334 width=38) (actual time=30.590..30.772 rows=334.00 loops=1)
+  Sort Key: (COALESCE((count(*)), '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 43kB
+  Buffers: shared hit=2823
+  ->  Hash Right Join  (cost=10281.31..10347.81 rows=334 width=38) (actual time=30.344..30.727 rows=334.00 loops=1)
+        Hash Cond: (ta.artist_id = ar.artist_id)
+        Buffers: shared hit=2820
+        ->  Finalize HashAggregate  (cost=10218.13..10247.52 rows=2939 width=20) (actual time=30.213..30.498 rows=3000.00 loops=1)
+              Group Key: ta.artist_id
+              Batches: 1  Memory Usage: 345kB
+              Buffers: shared hit=2791
+              ->  Gather  (cost=9651.67..10180.66 rows=4996 width=20) (actual time=29.481..29.969 rows=5998.00 loops=1)
+                    Workers Planned: 1
+                    Workers Launched: 1
+                    Buffers: shared hit=2791
+                    ->  Partial HashAggregate  (cost=8651.67..8681.06 rows=2939 width=20) (actual time=28.446..28.569 rows=2999.00 loops=2)
+                          Group Key: ta.artist_id
+                          Batches: 1  Memory Usage: 345kB
+                          Buffers: shared hit=2791
+                          Worker 0:  Batches: 1  Memory Usage: 345kB
+                          ->  Parallel Hash Join  (cost=1970.20..7312.34 rows=178578 width=12) (actual time=3.130..18.998 rows=142959.50 loops=2)
+                                Hash Cond: (s.track_id = ta.track_id)
+                                Buffers: shared hit=2791
+                                ->  Parallel Seq Scan on streams s  (cost=0.00..4046.59 rows=147059 width=12) (actual time=0.006..3.469 rows=125000.00 loops=2)
+                                      Buffers: shared hit=2576
+                                ->  Parallel Hash  (cost=1566.61..1566.61 rows=32287 width=8) (actual time=3.057..3.057 rows=38744.50 loops=2)
+                                      Buckets: 131072  Batches: 1  Memory Usage: 4064kB
+                                      Buffers: shared hit=215
+                                      ->  Parallel Index Only Scan using idx_track_artists_artist_track on track_artists ta  (cost=0.29..1566.61 rows=32287 width=8) (actual time=0.015..1.290 rows=38744.50 loops=2)
+                                            Heap Fetches: 0
+                                            Index Searches: 1
+                                            Buffers: shared hit=215
+        ->  Hash  (cost=59.00..59.00 rows=334 width=22) (actual time=0.124..0.124 rows=334.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 26kB
+              Buffers: shared hit=29
+              ->  Seq Scan on artists ar  (cost=0.00..59.00 rows=334 width=22) (actual time=0.004..0.106 rows=334.00 loops=1)
+                    Filter: is_verified
+                    Rows Removed by Filter: 2666
+                    Buffers: shared hit=29
+Planning:
+  Buffers: shared hit=285
+Planning Time: 0.574 ms
+Execution Time: 30.847 ms
+=== R19 run 2 ===
+Sort  (cost=10361.81..10362.65 rows=334 width=38) (actual time=30.343..30.529 rows=334.00 loops=1)
+  Sort Key: (COALESCE((count(*)), '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 43kB
+  Buffers: shared hit=2823
+  ->  Hash Right Join  (cost=10281.31..10347.81 rows=334 width=38) (actual time=30.085..30.484 rows=334.00 loops=1)
+        Hash Cond: (ta.artist_id = ar.artist_id)
+        Buffers: shared hit=2820
+        ->  Finalize HashAggregate  (cost=10218.13..10247.52 rows=2939 width=20) (actual time=29.968..30.265 rows=3000.00 loops=1)
+              Group Key: ta.artist_id
+              Batches: 1  Memory Usage: 345kB
+              Buffers: shared hit=2791
+              ->  Gather  (cost=9651.67..10180.66 rows=4996 width=20) (actual time=29.200..29.724 rows=5997.00 loops=1)
+                    Workers Planned: 1
+                    Workers Launched: 1
+                    Buffers: shared hit=2791
+                    ->  Partial HashAggregate  (cost=8651.67..8681.06 rows=2939 width=20) (actual time=28.164..28.292 rows=2998.50 loops=2)
+                          Group Key: ta.artist_id
+                          Batches: 1  Memory Usage: 345kB
+                          Buffers: shared hit=2791
+                          Worker 0:  Batches: 1  Memory Usage: 345kB
+                          ->  Parallel Hash Join  (cost=1970.20..7312.34 rows=178578 width=12) (actual time=3.019..18.705 rows=142959.50 loops=2)
+                                Hash Cond: (s.track_id = ta.track_id)
+                                Buffers: shared hit=2791
+                                ->  Parallel Seq Scan on streams s  (cost=0.00..4046.59 rows=147059 width=12) (actual time=0.006..3.518 rows=125000.00 loops=2)
+                                      Buffers: shared hit=2576
+                                ->  Parallel Hash  (cost=1566.61..1566.61 rows=32287 width=8) (actual time=2.947..2.947 rows=38744.50 loops=2)
+                                      Buckets: 131072  Batches: 1  Memory Usage: 4064kB
+                                      Buffers: shared hit=215
+                                      ->  Parallel Index Only Scan using idx_track_artists_artist_track on track_artists ta  (cost=0.29..1566.61 rows=32287 width=8) (actual time=0.018..1.264 rows=38744.50 loops=2)
+                                            Heap Fetches: 0
+                                            Index Searches: 1
+                                            Buffers: shared hit=215
+        ->  Hash  (cost=59.00..59.00 rows=334 width=22) (actual time=0.110..0.110 rows=334.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 26kB
+              Buffers: shared hit=29
+              ->  Seq Scan on artists ar  (cost=0.00..59.00 rows=334 width=22) (actual time=0.003..0.093 rows=334.00 loops=1)
+                    Filter: is_verified
+                    Rows Removed by Filter: 2666
+                    Buffers: shared hit=29
+Planning:
+  Buffers: shared hit=285
+Planning Time: 0.512 ms
+Execution Time: 30.592 ms
+=== R19 run 3 ===
+Sort  (cost=10361.81..10362.65 rows=334 width=38) (actual time=30.180..30.321 rows=334.00 loops=1)
+  Sort Key: (COALESCE((count(*)), '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 43kB
+  Buffers: shared hit=2823
+  ->  Hash Right Join  (cost=10281.31..10347.81 rows=334 width=38) (actual time=29.919..30.277 rows=334.00 loops=1)
+        Hash Cond: (ta.artist_id = ar.artist_id)
+        Buffers: shared hit=2820
+        ->  Finalize HashAggregate  (cost=10218.13..10247.52 rows=2939 width=20) (actual time=29.798..30.047 rows=3000.00 loops=1)
+              Group Key: ta.artist_id
+              Batches: 1  Memory Usage: 345kB
+              Buffers: shared hit=2791
+              ->  Gather  (cost=9651.67..10180.66 rows=4996 width=20) (actual time=29.066..29.485 rows=5997.00 loops=1)
+                    Workers Planned: 1
+                    Workers Launched: 1
+                    Buffers: shared hit=2791
+                    ->  Partial HashAggregate  (cost=8651.67..8681.06 rows=2939 width=20) (actual time=28.104..28.230 rows=2998.50 loops=2)
+                          Group Key: ta.artist_id
+                          Batches: 1  Memory Usage: 345kB
+                          Buffers: shared hit=2791
+                          Worker 0:  Batches: 1  Memory Usage: 345kB
+                          ->  Parallel Hash Join  (cost=1970.20..7312.34 rows=178578 width=12) (actual time=2.765..18.653 rows=142959.50 loops=2)
+                                Hash Cond: (s.track_id = ta.track_id)
+                                Buffers: shared hit=2791
+                                ->  Parallel Seq Scan on streams s  (cost=0.00..4046.59 rows=147059 width=12) (actual time=0.004..3.601 rows=125000.00 loops=2)
+                                      Buffers: shared hit=2576
+                                ->  Parallel Hash  (cost=1566.61..1566.61 rows=32287 width=8) (actual time=2.701..2.701 rows=38744.50 loops=2)
+                                      Buckets: 131072  Batches: 1  Memory Usage: 4096kB
+                                      Buffers: shared hit=215
+                                      ->  Parallel Index Only Scan using idx_track_artists_artist_track on track_artists ta  (cost=0.29..1566.61 rows=32287 width=8) (actual time=0.014..1.158 rows=38744.50 loops=2)
+                                            Heap Fetches: 0
+                                            Index Searches: 1
+                                            Buffers: shared hit=215
+        ->  Hash  (cost=59.00..59.00 rows=334 width=22) (actual time=0.116..0.117 rows=334.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 26kB
+              Buffers: shared hit=29
+              ->  Seq Scan on artists ar  (cost=0.00..59.00 rows=334 width=22) (actual time=0.004..0.099 rows=334.00 loops=1)
+                    Filter: is_verified
+                    Rows Removed by Filter: 2666
+                    Buffers: shared hit=29
+Planning:
+  Buffers: shared hit=285
+Planning Time: 0.517 ms
+Execution Time: 30.390 ms

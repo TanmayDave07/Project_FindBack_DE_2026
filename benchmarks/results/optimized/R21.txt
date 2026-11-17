@@ -1,0 +1,45 @@
+=== R21 run 1 ===
+Nested Loop  (cost=0.70..16.74 rows=1 width=44) (actual time=0.014..0.015 rows=1.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using uq_tracks_isrc on tracks t  (cost=0.42..8.44 rows=1 width=23) (actual time=0.011..0.011 rows=1.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::bpchar)
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Index Scan using pk_albums on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.002..0.002 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=302
+Planning Time: 0.523 ms
+Execution Time: 0.038 ms
+=== R21 run 2 ===
+Nested Loop  (cost=0.70..16.74 rows=1 width=44) (actual time=0.014..0.014 rows=1.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using uq_tracks_isrc on tracks t  (cost=0.42..8.44 rows=1 width=23) (actual time=0.011..0.011 rows=1.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::bpchar)
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Index Scan using pk_albums on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.002..0.002 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=302
+Planning Time: 0.493 ms
+Execution Time: 0.037 ms
+=== R21 run 3 ===
+Nested Loop  (cost=0.70..16.74 rows=1 width=44) (actual time=0.023..0.023 rows=1.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using uq_tracks_isrc on tracks t  (cost=0.42..8.44 rows=1 width=23) (actual time=0.019..0.019 rows=1.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::bpchar)
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Index Scan using pk_albums on albums a  (cost=0.29..8.30 rows=1 width=29) (actual time=0.002..0.002 rows=1.00 loops=1)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=302
+Planning Time: 0.493 ms
+Execution Time: 0.047 ms

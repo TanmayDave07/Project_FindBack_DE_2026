@@ -1,0 +1,96 @@
+=== R12 run 1 ===
+Limit  (cost=1.01..869.71 rows=200 width=20) (actual time=0.303..8.057 rows=200.00 loops=1)
+  Buffers: shared hit=27644
+  ->  Nested Loop  (cost=1.01..40265.45 rows=9270 width=20) (actual time=0.303..8.051 rows=200.00 loops=1)
+        Buffers: shared hit=27644
+        ->  Nested Loop  (cost=0.72..30966.34 rows=27810 width=20) (actual time=0.131..6.931 rows=1004.00 loops=1)
+              Buffers: shared hit=24632
+              ->  Index Only Scan using idx_streams_started_track on streams s  (cost=0.42..8761.30 rows=250000 width=20) (actual time=0.012..0.313 rows=9215.00 loops=1)
+                    Heap Fetches: 69
+                    Index Searches: 1
+                    Buffers: shared hit=50
+              ->  Memoize  (cost=0.30..0.33 rows=1 width=4) (actual time=0.001..0.001 rows=0.11 loops=9215)
+                    Cache Key: s.track_id
+                    Cache Mode: logical
+                    Hits: 1021  Misses: 8194  Evictions: 0  Overflows: 0  Memory Usage: 576kB
+                    Buffers: shared hit=24582
+                    ->  Index Scan using pk_tracks on tracks t  (cost=0.29..0.32 rows=1 width=4) (actual time=0.001..0.001 rows=0.11 loops=8194)
+                          Index Cond: (track_id = s.track_id)
+                          Filter: explicit
+                          Rows Removed by Filter: 1
+                          Index Searches: 8194
+                          Buffers: shared hit=24582
+        ->  Index Scan using pk_users on users u  (cost=0.29..0.32 rows=1 width=8) (actual time=0.001..0.001 rows=0.20 loops=1004)
+              Index Cond: (user_id = s.user_id)
+              Filter: (age(((s.started_at)::date)::timestamp with time zone, (birth_date)::timestamp with time zone) < '18 years'::interval)
+              Rows Removed by Filter: 1
+              Index Searches: 1004
+              Buffers: shared hit=3012
+Planning:
+  Buffers: shared hit=484
+Planning Time: 0.762 ms
+Execution Time: 8.085 ms
+=== R12 run 2 ===
+Limit  (cost=1.01..869.71 rows=200 width=20) (actual time=0.255..7.950 rows=200.00 loops=1)
+  Buffers: shared hit=27644
+  ->  Nested Loop  (cost=1.01..40265.45 rows=9270 width=20) (actual time=0.255..7.944 rows=200.00 loops=1)
+        Buffers: shared hit=27644
+        ->  Nested Loop  (cost=0.72..30966.34 rows=27810 width=20) (actual time=0.089..6.825 rows=1004.00 loops=1)
+              Buffers: shared hit=24632
+              ->  Index Only Scan using idx_streams_started_track on streams s  (cost=0.42..8761.30 rows=250000 width=20) (actual time=0.006..0.309 rows=9215.00 loops=1)
+                    Heap Fetches: 69
+                    Index Searches: 1
+                    Buffers: shared hit=50
+              ->  Memoize  (cost=0.30..0.33 rows=1 width=4) (actual time=0.001..0.001 rows=0.11 loops=9215)
+                    Cache Key: s.track_id
+                    Cache Mode: logical
+                    Hits: 1021  Misses: 8194  Evictions: 0  Overflows: 0  Memory Usage: 576kB
+                    Buffers: shared hit=24582
+                    ->  Index Scan using pk_tracks on tracks t  (cost=0.29..0.32 rows=1 width=4) (actual time=0.001..0.001 rows=0.11 loops=8194)
+                          Index Cond: (track_id = s.track_id)
+                          Filter: explicit
+                          Rows Removed by Filter: 1
+                          Index Searches: 8194
+                          Buffers: shared hit=24582
+        ->  Index Scan using pk_users on users u  (cost=0.29..0.32 rows=1 width=8) (actual time=0.001..0.001 rows=0.20 loops=1004)
+              Index Cond: (user_id = s.user_id)
+              Filter: (age(((s.started_at)::date)::timestamp with time zone, (birth_date)::timestamp with time zone) < '18 years'::interval)
+              Rows Removed by Filter: 1
+              Index Searches: 1004
+              Buffers: shared hit=3012
+Planning:
+  Buffers: shared hit=484
+Planning Time: 0.712 ms
+Execution Time: 7.976 ms
+=== R12 run 3 ===
+Limit  (cost=1.01..869.71 rows=200 width=20) (actual time=0.258..7.705 rows=200.00 loops=1)
+  Buffers: shared hit=27644
+  ->  Nested Loop  (cost=1.01..40265.45 rows=9270 width=20) (actual time=0.257..7.698 rows=200.00 loops=1)
+        Buffers: shared hit=27644
+        ->  Nested Loop  (cost=0.72..30966.34 rows=27810 width=20) (actual time=0.096..6.634 rows=1004.00 loops=1)
+              Buffers: shared hit=24632
+              ->  Index Only Scan using idx_streams_started_track on streams s  (cost=0.42..8761.30 rows=250000 width=20) (actual time=0.006..0.309 rows=9215.00 loops=1)
+                    Heap Fetches: 69
+                    Index Searches: 1
+                    Buffers: shared hit=50
+              ->  Memoize  (cost=0.30..0.33 rows=1 width=4) (actual time=0.001..0.001 rows=0.11 loops=9215)
+                    Cache Key: s.track_id
+                    Cache Mode: logical
+                    Hits: 1021  Misses: 8194  Evictions: 0  Overflows: 0  Memory Usage: 576kB
+                    Buffers: shared hit=24582
+                    ->  Index Scan using pk_tracks on tracks t  (cost=0.29..0.32 rows=1 width=4) (actual time=0.001..0.001 rows=0.11 loops=8194)
+                          Index Cond: (track_id = s.track_id)
+                          Filter: explicit
+                          Rows Removed by Filter: 1
+                          Index Searches: 8194
+                          Buffers: shared hit=24582
+        ->  Index Scan using pk_users on users u  (cost=0.29..0.32 rows=1 width=8) (actual time=0.001..0.001 rows=0.20 loops=1004)
+              Index Cond: (user_id = s.user_id)
+              Filter: (age(((s.started_at)::date)::timestamp with time zone, (birth_date)::timestamp with time zone) < '18 years'::interval)
+              Rows Removed by Filter: 1
+              Index Searches: 1004
+              Buffers: shared hit=3012
+Planning:
+  Buffers: shared hit=484
+Planning Time: 0.641 ms
+Execution Time: 7.733 ms

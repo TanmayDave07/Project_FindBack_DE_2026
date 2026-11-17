@@ -1,0 +1,42 @@
+=== W02 run 1 ===
+Insert on liked_tracks  (cost=0.00..0.01 rows=0 width=0) (actual time=0.197..0.197 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: pk_liked_tracks
+  Tuples Inserted: 1
+  Conflicting Tuples: 0
+  Buffers: shared hit=18
+  ->  Result  (cost=0.00..0.01 rows=1 width=16) (actual time=0.000..0.001 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=36
+Planning Time: 0.043 ms
+Trigger for constraint fk_liked_tracks_user: time=0.288 calls=1
+Trigger for constraint fk_liked_tracks_track: time=0.159 calls=1
+Execution Time: 0.663 ms
+=== W02 run 2 ===
+Insert on liked_tracks  (cost=0.00..0.01 rows=0 width=0) (actual time=0.104..0.105 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: pk_liked_tracks
+  Tuples Inserted: 1
+  Conflicting Tuples: 0
+  Buffers: shared hit=19
+  ->  Result  (cost=0.00..0.01 rows=1 width=16) (actual time=0.000..0.001 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=36
+Planning Time: 0.043 ms
+Trigger for constraint fk_liked_tracks_user: time=0.257 calls=1
+Trigger for constraint fk_liked_tracks_track: time=0.143 calls=1
+Execution Time: 0.522 ms
+=== W02 run 3 ===
+Insert on liked_tracks  (cost=0.00..0.01 rows=0 width=0) (actual time=0.089..0.090 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: pk_liked_tracks
+  Tuples Inserted: 1
+  Conflicting Tuples: 0
+  Buffers: shared hit=19
+  ->  Result  (cost=0.00..0.01 rows=1 width=16) (actual time=0.000..0.000 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=36
+Planning Time: 0.036 ms
+Trigger for constraint fk_liked_tracks_user: time=0.238 calls=1
+Trigger for constraint fk_liked_tracks_track: time=0.147 calls=1
+Execution Time: 0.491 ms

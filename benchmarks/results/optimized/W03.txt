@@ -1,0 +1,81 @@
+=== W03 run 1 ===
+Insert on playlist_tracks  (cost=8.95..8.97 rows=0 width=0) (actual time=0.160..0.161 rows=0.00 loops=1)
+  Buffers: shared hit=18 dirtied=2
+  ->  Subquery Scan on "*SELECT*"  (cost=8.95..8.97 rows=1 width=24) (actual time=0.048..0.049 rows=1.00 loops=1)
+        Buffers: shared hit=6
+        ->  Result  (cost=8.95..8.96 rows=1 width=48) (actual time=0.048..0.048 rows=1.00 loops=1)
+              Buffers: shared hit=6
+              InitPlan 1
+                ->  Index Scan using pk_playlists on playlists  (cost=0.29..8.30 rows=1 width=4) (actual time=0.016..0.016 rows=1.00 loops=1)
+                      Index Cond: (playlist_id = 501)
+                      Index Searches: 1
+                      Buffers: shared hit=3
+              InitPlan 2
+                ->  Limit  (cost=0.29..0.64 rows=1 width=4) (actual time=0.029..0.030 rows=1.00 loops=1)
+                      Buffers: shared hit=3
+                      ->  Index Only Scan Backward using pk_playlist_tracks on playlist_tracks playlist_tracks_1  (cost=0.29..4.50 rows=12 width=4) (actual time=0.029..0.029 rows=1.00 loops=1)
+                            Index Cond: (playlist_id = 501)
+                            Heap Fetches: 0
+                            Index Searches: 1
+                            Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=124
+Planning Time: 0.297 ms
+Trigger for constraint fk_playlist_tracks_playlist: time=0.123 calls=1
+Trigger for constraint fk_playlist_tracks_track: time=0.179 calls=1
+Trigger for constraint fk_playlist_tracks_added_by: time=0.141 calls=1
+Execution Time: 0.635 ms
+=== W03 run 2 ===
+Insert on playlist_tracks  (cost=8.95..8.97 rows=0 width=0) (actual time=0.090..0.090 rows=0.00 loops=1)
+  Buffers: shared hit=20
+  ->  Subquery Scan on "*SELECT*"  (cost=8.95..8.97 rows=1 width=24) (actual time=0.037..0.037 rows=1.00 loops=1)
+        Buffers: shared hit=7
+        ->  Result  (cost=8.95..8.96 rows=1 width=48) (actual time=0.036..0.036 rows=1.00 loops=1)
+              Buffers: shared hit=7
+              InitPlan 1
+                ->  Index Scan using pk_playlists on playlists  (cost=0.29..8.30 rows=1 width=4) (actual time=0.006..0.006 rows=1.00 loops=1)
+                      Index Cond: (playlist_id = 501)
+                      Index Searches: 1
+                      Buffers: shared hit=3
+              InitPlan 2
+                ->  Limit  (cost=0.29..0.64 rows=1 width=4) (actual time=0.029..0.029 rows=1.00 loops=1)
+                      Buffers: shared hit=4
+                      ->  Index Only Scan Backward using pk_playlist_tracks on playlist_tracks playlist_tracks_1  (cost=0.29..4.50 rows=12 width=4) (actual time=0.028..0.028 rows=1.00 loops=1)
+                            Index Cond: (playlist_id = 501)
+                            Heap Fetches: 1
+                            Index Searches: 1
+                            Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=124
+Planning Time: 0.247 ms
+Trigger for constraint fk_playlist_tracks_playlist: time=0.077 calls=1
+Trigger for constraint fk_playlist_tracks_track: time=0.141 calls=1
+Trigger for constraint fk_playlist_tracks_added_by: time=0.117 calls=1
+Execution Time: 0.451 ms
+=== W03 run 3 ===
+Insert on playlist_tracks  (cost=8.95..8.97 rows=0 width=0) (actual time=0.089..0.089 rows=0.00 loops=1)
+  Buffers: shared hit=20
+  ->  Subquery Scan on "*SELECT*"  (cost=8.95..8.97 rows=1 width=24) (actual time=0.037..0.037 rows=1.00 loops=1)
+        Buffers: shared hit=7
+        ->  Result  (cost=8.95..8.96 rows=1 width=48) (actual time=0.037..0.037 rows=1.00 loops=1)
+              Buffers: shared hit=7
+              InitPlan 1
+                ->  Index Scan using pk_playlists on playlists  (cost=0.29..8.30 rows=1 width=4) (actual time=0.007..0.007 rows=1.00 loops=1)
+                      Index Cond: (playlist_id = 501)
+                      Index Searches: 1
+                      Buffers: shared hit=3
+              InitPlan 2
+                ->  Limit  (cost=0.29..0.64 rows=1 width=4) (actual time=0.028..0.029 rows=1.00 loops=1)
+                      Buffers: shared hit=4
+                      ->  Index Only Scan Backward using pk_playlist_tracks on playlist_tracks playlist_tracks_1  (cost=0.29..4.50 rows=12 width=4) (actual time=0.028..0.028 rows=1.00 loops=1)
+                            Index Cond: (playlist_id = 501)
+                            Heap Fetches: 1
+                            Index Searches: 1
+                            Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=124
+Planning Time: 0.255 ms
+Trigger for constraint fk_playlist_tracks_playlist: time=0.073 calls=1
+Trigger for constraint fk_playlist_tracks_track: time=0.139 calls=1
+Trigger for constraint fk_playlist_tracks_added_by: time=0.117 calls=1
+Execution Time: 0.444 ms

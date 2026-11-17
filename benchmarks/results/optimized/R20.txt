@@ -1,0 +1,66 @@
+=== R20 run 1 ===
+GroupAggregate  (cost=36631.80..42256.80 rows=250000 width=43) (actual time=105.469..141.254 rows=96.00 loops=1)
+  Group Key: u.country_code, (EXTRACT(hour FROM s.started_at))
+  Buffers: shared hit=2928, temp read=550 written=552
+  ->  Sort  (cost=36631.80..37256.80 rows=250000 width=35) (actual time=105.318..128.332 rows=250000.00 loops=1)
+        Sort Key: u.country_code, (EXTRACT(hour FROM s.started_at))
+        Sort Method: external merge  Disk: 4400kB
+        Buffers: shared hit=2928, temp read=550 written=552
+        ->  Hash Join  (cost=1021.00..7378.34 rows=250000 width=35) (actual time=2.577..39.595 rows=250000.00 loops=1)
+              Hash Cond: (s.user_id = u.user_id)
+              Buffers: shared hit=2922
+              ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=12) (actual time=0.004..6.127 rows=250000.00 loops=1)
+                    Buffers: shared hit=2576
+              ->  Hash  (cost=646.00..646.00 rows=30000 width=7) (actual time=2.545..2.545 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                    Buffers: shared hit=346
+                    ->  Seq Scan on users u  (cost=0.00..646.00 rows=30000 width=7) (actual time=0.003..1.299 rows=30000.00 loops=1)
+                          Buffers: shared hit=346
+Planning:
+  Buffers: shared hit=355
+Planning Time: 0.497 ms
+Execution Time: 142.380 ms
+=== R20 run 2 ===
+GroupAggregate  (cost=36631.80..42256.80 rows=250000 width=43) (actual time=105.892..142.053 rows=96.00 loops=1)
+  Group Key: u.country_code, (EXTRACT(hour FROM s.started_at))
+  Buffers: shared hit=2928, temp read=550 written=552
+  ->  Sort  (cost=36631.80..37256.80 rows=250000 width=35) (actual time=105.745..129.348 rows=250000.00 loops=1)
+        Sort Key: u.country_code, (EXTRACT(hour FROM s.started_at))
+        Sort Method: external merge  Disk: 4400kB
+        Buffers: shared hit=2928, temp read=550 written=552
+        ->  Hash Join  (cost=1021.00..7378.34 rows=250000 width=35) (actual time=2.526..39.236 rows=250000.00 loops=1)
+              Hash Cond: (s.user_id = u.user_id)
+              Buffers: shared hit=2922
+              ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=12) (actual time=0.004..6.114 rows=250000.00 loops=1)
+                    Buffers: shared hit=2576
+              ->  Hash  (cost=646.00..646.00 rows=30000 width=7) (actual time=2.496..2.497 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                    Buffers: shared hit=346
+                    ->  Seq Scan on users u  (cost=0.00..646.00 rows=30000 width=7) (actual time=0.002..1.237 rows=30000.00 loops=1)
+                          Buffers: shared hit=346
+Planning:
+  Buffers: shared hit=355
+Planning Time: 0.486 ms
+Execution Time: 142.964 ms
+=== R20 run 3 ===
+GroupAggregate  (cost=36631.80..42256.80 rows=250000 width=43) (actual time=104.253..139.495 rows=96.00 loops=1)
+  Group Key: u.country_code, (EXTRACT(hour FROM s.started_at))
+  Buffers: shared hit=2928, temp read=550 written=552
+  ->  Sort  (cost=36631.80..37256.80 rows=250000 width=35) (actual time=104.110..127.197 rows=250000.00 loops=1)
+        Sort Key: u.country_code, (EXTRACT(hour FROM s.started_at))
+        Sort Method: external merge  Disk: 4400kB
+        Buffers: shared hit=2928, temp read=550 written=552
+        ->  Hash Join  (cost=1021.00..7378.34 rows=250000 width=35) (actual time=2.522..39.084 rows=250000.00 loops=1)
+              Hash Cond: (s.user_id = u.user_id)
+              Buffers: shared hit=2922
+              ->  Seq Scan on streams s  (cost=0.00..5076.00 rows=250000 width=12) (actual time=0.004..6.115 rows=250000.00 loops=1)
+                    Buffers: shared hit=2576
+              ->  Hash  (cost=646.00..646.00 rows=30000 width=7) (actual time=2.491..2.491 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                    Buffers: shared hit=346
+                    ->  Seq Scan on users u  (cost=0.00..646.00 rows=30000 width=7) (actual time=0.002..1.248 rows=30000.00 loops=1)
+                          Buffers: shared hit=346
+Planning:
+  Buffers: shared hit=355
+Planning Time: 0.490 ms
+Execution Time: 140.597 ms
