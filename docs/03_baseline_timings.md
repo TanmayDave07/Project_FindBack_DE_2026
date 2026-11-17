@@ -125,4 +125,5 @@ createdb findback
 psql -d findback -f sql/01_schema.sql
 psql -d findback -f sql/02_load_data.sql
 ./benchmarks/run_benchmark.sh findback baseline
+
 ```

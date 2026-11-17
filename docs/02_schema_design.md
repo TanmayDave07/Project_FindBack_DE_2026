@@ -496,4 +496,4 @@ The load order is parents before dependent rows:
 
 `02_load_data.sql` runs `ANALYZE` and prints a row-count result for all ten tables. Confirm that the counts match Section 1 before recording the load as successful.
 
-**Execution status:** The schema and load scripts have been prepared and checked against the CSV values. PostgreSQL execution must still be performed in the project environment; do not mark the load as successful until both commands complete without errors.
+**Execution status:** The schema and load scripts have been prepared and checked against the CSV values. PostgreSQL execution must still be performed in the project environment; do not mark the load as successful until both commands complete without errors .

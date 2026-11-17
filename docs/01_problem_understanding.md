@@ -20,4 +20,4 @@
 2. **P5 / R13:** the empty result is likely a NULL-handling bug. `streams.playlist_id` is NULL for non-playlist streams, and `NOT IN` over a list containing NULL never returns true. This is to be verified and fixed in Phase 4 (e.g. with `NOT EXISTS`).
 3. **P7 / R12:** a user's age is calculated at the time of the stream, not today's date.
 4. Streams under 30 seconds earn no royalties but still count as streams for analytics (skip rate, listeners, daily counts).
-5. The 20× growth applies to stream volume, and the same queries must keep working at that scale.
+5. The 20× growth applies to stream volume, and the same queries must keep working at that scale .
