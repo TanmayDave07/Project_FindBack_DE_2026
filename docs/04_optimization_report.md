@@ -279,4 +279,4 @@ evaluate to UNKNOWN and incorrectly return no playlists.
 NOT EXISTS correctly checks for a matching stream for each public playlist.
 
 Result: Intentional correctness correction. The two queries are not
-equivalent because the original query has a NULL-related bug.
+equivalent because the original query has a NULL-related bug .
