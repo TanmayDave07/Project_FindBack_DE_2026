@@ -16,6 +16,20 @@
 
 **Getting started:** **clone this repository and push it into your team's DE repo** (the DE repo you submitted in the form); the steps are in [`CHECKPOINTS.md`](CHECKPOINTS.md). Keep the structure shown in [Repository structure](#repository-structure-submit-exactly-this). Unzip `seed_data.zip` inside your project folder, but don't commit the CSV files. Deadlines are in [`CHECKPOINTS.md`](CHECKPOINTS.md). Then begin with Phase 1.
 
+## CP4 completed: large-data scalability
+
+On 23 November 2026, the faculty dataset was loaded with **5,000,000 streams** and all **30 optimized queries were measured three times**. The final configuration meets all 30 average latency targets. It includes monthly stream partitions, a track-first playlist index for takedowns, and a refreshable materialized duplicate-playlist report.
+
+Read [`docs/05_scalability_report.md`](docs/05_scalability_report.md) for seed/large comparisons, before/after plans, actual storage, correctness checks, refresh costs and the 100× architecture. [`benchmarks/results/large/summary.csv`](benchmarks/results/large/summary.csv) contains final timings; [`benchmarks/results/large_before/`](benchmarks/results/large_before/) preserves the pre-CP4 large-data round. The report documents partitioning regressions and the duplicate report's freshness limit.
+
+With the faculty CSVs in ignored `large_data/`, reproduce the final configuration from the repository root:
+
+```bash
+bash benchmarks/run_scalability.sh spotify_cp4_reproduction large_reproduction
+```
+
+Use a new database name and result folder. The helper loads the data, applies `sql/05_indexes.sql`, `sql/08_partitioning.sql` and `sql/09_scalability_tuning.sql`, runs validation and records all 90 timed executions. The current `sql/06_optimized_queries.sql` requires `sql/09_scalability_tuning.sql` on a fresh seed or large database because R22 uses `spotify.playlist_duplicates`. Refresh that report after committed playlist changes with `REFRESH MATERIALIZED VIEW CONCURRENTLY spotify.playlist_duplicates;`.
+
 ---
 
 ## Team details (fill in before you start)
