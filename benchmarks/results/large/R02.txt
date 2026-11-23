@@ -1,0 +1,27 @@
+=== R02 run 1 ===
+Index Scan using uq_tracks_album_disc_track on tracks  (cost=0.43..22.59 rows=9 width=24) (actual time=0.256..0.257 rows=2.00 loops=1)
+  Index Cond: (album_id = 1469)
+  Index Searches: 1
+  Buffers: shared read=4
+Planning:
+  Buffers: shared hit=140 read=1
+Planning Time: 0.452 ms
+Execution Time: 0.293 ms
+=== R02 run 2 ===
+Index Scan using uq_tracks_album_disc_track on tracks  (cost=0.43..22.59 rows=9 width=24) (actual time=0.013..0.013 rows=2.00 loops=1)
+  Index Cond: (album_id = 1469)
+  Index Searches: 1
+  Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=141
+Planning Time: 0.409 ms
+Execution Time: 0.051 ms
+=== R02 run 3 ===
+Index Scan using uq_tracks_album_disc_track on tracks  (cost=0.43..22.59 rows=9 width=24) (actual time=0.016..0.017 rows=2.00 loops=1)
+  Index Cond: (album_id = 1469)
+  Index Searches: 1
+  Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=141
+Planning Time: 0.515 ms
+Execution Time: 0.061 ms

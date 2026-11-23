@@ -1,0 +1,285 @@
+=== R10 run 1 ===
+GroupAggregate  (cost=111667.17..115078.82 rows=25000 width=18) (actual time=235.961..287.707 rows=180.00 loops=1)
+  Group Key: ((streams.started_at)::date), streams.platform
+  Buffers: shared hit=487 read=50665 written=4, temp read=345 written=346
+  ->  Gather Merge  (cost=111667.17..114578.82 rows=25000 width=10) (actual time=235.315..270.403 rows=274725.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=487 read=50665 written=4, temp read=345 written=346
+        ->  Sort  (cost=110667.14..110693.17 rows=10412 width=10) (actual time=232.351..236.222 rows=91575.00 loops=3)
+              Sort Key: ((streams.started_at)::date), streams.platform
+              Sort Method: external merge  Disk: 2760kB
+              Buffers: shared hit=487 read=50665 written=4, temp read=345 written=346
+              Worker 0:  Sort Method: quicksort  Memory: 3903kB
+              Worker 1:  Sort Method: quicksort  Memory: 3379kB
+              ->  Parallel Append  (cost=0.00..109972.35 rows=10412 width=10) (actual time=176.219..205.822 rows=91575.00 loops=3)
+                    Buffers: shared hit=395 read=50665 written=4
+                    ->  Seq Scan on streams_2026_07 streams_19  (cost=0.00..0.00 rows=1 width=10) (actual time=0.028..0.028 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    ->  Seq Scan on streams_other streams_20  (cost=0.00..0.00 rows=1 width=10) (actual time=0.023..0.023 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    ->  Parallel Seq Scan on streams_2025_01 streams_1  (cost=0.00..6240.89 rows=835 width=10) (actual time=36.526..36.526 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared hit=70 read=2829
+                    ->  Parallel Seq Scan on streams_2025_08 streams_8  (cost=0.00..6240.89 rows=835 width=10) (actual time=34.530..34.530 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared hit=53 read=2846
+                    ->  Parallel Seq Scan on streams_2025_10 streams_10  (cost=0.00..6240.89 rows=835 width=10) (actual time=32.852..32.852 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared hit=64 read=2835 written=1
+                    ->  Parallel Seq Scan on streams_2026_01 streams_13  (cost=0.00..6240.89 rows=835 width=10) (actual time=34.442..34.442 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared hit=47 read=2852
+                    ->  Parallel Seq Scan on streams_2026_03 streams_15  (cost=0.00..6240.89 rows=835 width=10) (actual time=29.710..29.711 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2026_05 streams_17  (cost=0.00..6240.89 rows=835 width=10) (actual time=30.771..30.771 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared hit=1 read=2898 written=1
+                    ->  Parallel Seq Scan on streams_2025_03 streams_3  (cost=0.00..6240.88 rows=835 width=10) (actual time=32.026..32.026 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_05 streams_5  (cost=0.00..6240.88 rows=835 width=10) (actual time=30.124..30.124 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_07 streams_7  (cost=0.00..6240.88 rows=835 width=10) (actual time=29.903..29.903 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_12 streams_12  (cost=0.00..6240.88 rows=835 width=10) (actual time=31.725..31.725 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_06 streams_6  (cost=0.00..6040.09 rows=808 width=10) (actual time=29.418..29.418 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274726
+                          Buffers: shared read=2806
+                    ->  Parallel Seq Scan on streams_2025_11 streams_11  (cost=0.00..6040.09 rows=808 width=10) (actual time=28.282..28.282 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274726
+                          Buffers: shared read=2806
+                    ->  Parallel Seq Scan on streams_2026_06 streams_18  (cost=0.00..6040.08 rows=808 width=10) (actual time=0.067..23.915 rows=91575.00 loops=3)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Buffers: shared read=2806
+                    ->  Parallel Seq Scan on streams_2025_04 streams_4  (cost=0.00..6039.09 rows=808 width=10) (actual time=29.222..29.222 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274726
+                          Buffers: shared read=2805
+                    ->  Parallel Seq Scan on streams_2025_09 streams_9  (cost=0.00..6039.08 rows=808 width=10) (actual time=28.572..28.572 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274725
+                          Buffers: shared read=2805
+                    ->  Parallel Seq Scan on streams_2026_04 streams_16  (cost=0.00..6039.08 rows=808 width=10) (actual time=30.286..30.286 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274725
+                          Buffers: shared hit=33 read=2772 written=2
+                    ->  Parallel Seq Scan on streams_2026_02 streams_14  (cost=0.00..5637.47 rows=754 width=10) (actual time=28.554..28.554 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 256410
+                          Buffers: shared hit=56 read=2563
+                    ->  Parallel Seq Scan on streams_2025_02 streams_2  (cost=0.00..5636.49 rows=754 width=10) (actual time=31.443..31.443 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 256411
+                          Buffers: shared hit=71 read=2547
+Planning:
+  Buffers: shared hit=2634
+Planning Time: 6.528 ms
+Execution Time: 288.731 ms
+=== R10 run 2 ===
+GroupAggregate  (cost=111667.17..115078.82 rows=25000 width=18) (actual time=233.040..288.899 rows=180.00 loops=1)
+  Group Key: ((streams.started_at)::date), streams.platform
+  Buffers: shared hit=92 read=51060, temp read=335 written=336
+  ->  Gather Merge  (cost=111667.17..114578.82 rows=25000 width=10) (actual time=232.358..270.678 rows=274725.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=92 read=51060, temp read=335 written=336
+        ->  Sort  (cost=110667.14..110693.17 rows=10412 width=10) (actual time=228.325..232.439 rows=91575.00 loops=3)
+              Sort Key: ((streams.started_at)::date), streams.platform
+              Sort Method: external merge  Disk: 2680kB
+              Buffers: shared hit=92 read=51060, temp read=335 written=336
+              Worker 0:  Sort Method: quicksort  Memory: 3858kB
+              Worker 1:  Sort Method: quicksort  Memory: 3861kB
+              ->  Parallel Append  (cost=0.00..109972.35 rows=10412 width=10) (actual time=173.265..201.840 rows=91575.00 loops=3)
+                    Buffers: shared read=51060
+                    ->  Seq Scan on streams_2026_07 streams_19  (cost=0.00..0.00 rows=1 width=10) (actual time=0.026..0.026 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    ->  Seq Scan on streams_other streams_20  (cost=0.00..0.00 rows=1 width=10) (actual time=0.027..0.027 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    ->  Parallel Seq Scan on streams_2025_01 streams_1  (cost=0.00..6240.89 rows=835 width=10) (actual time=34.588..34.589 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_08 streams_8  (cost=0.00..6240.89 rows=835 width=10) (actual time=33.222..33.222 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_10 streams_10  (cost=0.00..6240.89 rows=835 width=10) (actual time=31.796..31.796 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2026_01 streams_13  (cost=0.00..6240.89 rows=835 width=10) (actual time=33.974..33.975 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2026_03 streams_15  (cost=0.00..6240.89 rows=835 width=10) (actual time=30.340..30.340 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2026_05 streams_17  (cost=0.00..6240.89 rows=835 width=10) (actual time=31.220..31.221 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_03 streams_3  (cost=0.00..6240.88 rows=835 width=10) (actual time=30.232..30.232 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_05 streams_5  (cost=0.00..6240.88 rows=835 width=10) (actual time=28.965..28.965 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_07 streams_7  (cost=0.00..6240.88 rows=835 width=10) (actual time=30.440..30.440 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_12 streams_12  (cost=0.00..6240.88 rows=835 width=10) (actual time=29.695..29.695 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_06 streams_6  (cost=0.00..6040.09 rows=808 width=10) (actual time=28.998..28.998 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274726
+                          Buffers: shared read=2806
+                    ->  Parallel Seq Scan on streams_2025_11 streams_11  (cost=0.00..6040.09 rows=808 width=10) (actual time=28.339..28.340 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274726
+                          Buffers: shared read=2806
+                    ->  Parallel Seq Scan on streams_2026_06 streams_18  (cost=0.00..6040.08 rows=808 width=10) (actual time=0.056..22.930 rows=91575.00 loops=3)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Buffers: shared read=2806
+                    ->  Parallel Seq Scan on streams_2025_04 streams_4  (cost=0.00..6039.09 rows=808 width=10) (actual time=29.602..29.603 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274726
+                          Buffers: shared read=2805
+                    ->  Parallel Seq Scan on streams_2025_09 streams_9  (cost=0.00..6039.08 rows=808 width=10) (actual time=28.712..28.712 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274725
+                          Buffers: shared read=2805
+                    ->  Parallel Seq Scan on streams_2026_04 streams_16  (cost=0.00..6039.08 rows=808 width=10) (actual time=29.750..29.750 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274725
+                          Buffers: shared read=2805
+                    ->  Parallel Seq Scan on streams_2026_02 streams_14  (cost=0.00..5637.47 rows=754 width=10) (actual time=29.174..29.174 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 256410
+                          Buffers: shared read=2619
+                    ->  Parallel Seq Scan on streams_2025_02 streams_2  (cost=0.00..5636.49 rows=754 width=10) (actual time=30.506..30.506 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 256411
+                          Buffers: shared read=2618
+Planning:
+  Buffers: shared hit=2412 read=222
+Planning Time: 7.219 ms
+Execution Time: 289.621 ms
+=== R10 run 3 ===
+GroupAggregate  (cost=111667.17..115078.82 rows=25000 width=18) (actual time=264.837..317.767 rows=180.00 loops=1)
+  Group Key: ((streams.started_at)::date), streams.platform
+  Buffers: shared hit=92 read=51060, temp read=361 written=362
+  ->  Gather Merge  (cost=111667.17..114578.82 rows=25000 width=10) (actual time=264.201..300.845 rows=274725.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=92 read=51060, temp read=361 written=362
+        ->  Sort  (cost=110667.14..110693.17 rows=10412 width=10) (actual time=258.569..262.509 rows=91575.00 loops=3)
+              Sort Key: ((streams.started_at)::date), streams.platform
+              Sort Method: external merge  Disk: 2888kB
+              Buffers: shared hit=92 read=51060, temp read=361 written=362
+              Worker 0:  Sort Method: quicksort  Memory: 3025kB
+              Worker 1:  Sort Method: quicksort  Memory: 4077kB
+              ->  Parallel Append  (cost=0.00..109972.35 rows=10412 width=10) (actual time=196.999..229.516 rows=91575.00 loops=3)
+                    Buffers: shared read=51060
+                    ->  Seq Scan on streams_2026_07 streams_19  (cost=0.00..0.00 rows=1 width=10) (actual time=0.027..0.028 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    ->  Seq Scan on streams_other streams_20  (cost=0.00..0.00 rows=1 width=10) (actual time=0.031..0.032 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                    ->  Parallel Seq Scan on streams_2025_01 streams_1  (cost=0.00..6240.89 rows=835 width=10) (actual time=37.543..37.543 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_08 streams_8  (cost=0.00..6240.89 rows=835 width=10) (actual time=36.427..36.427 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_10 streams_10  (cost=0.00..6240.89 rows=835 width=10) (actual time=33.195..33.195 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2026_01 streams_13  (cost=0.00..6240.89 rows=835 width=10) (actual time=36.628..36.628 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2026_03 streams_15  (cost=0.00..6240.89 rows=835 width=10) (actual time=32.825..32.825 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2026_05 streams_17  (cost=0.00..6240.89 rows=835 width=10) (actual time=32.958..32.958 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283883
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_03 streams_3  (cost=0.00..6240.88 rows=835 width=10) (actual time=32.453..32.453 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_05 streams_5  (cost=0.00..6240.88 rows=835 width=10) (actual time=36.545..36.545 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_07 streams_7  (cost=0.00..6240.88 rows=835 width=10) (actual time=40.946..40.946 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_12 streams_12  (cost=0.00..6240.88 rows=835 width=10) (actual time=42.215..42.215 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 283882
+                          Buffers: shared read=2899
+                    ->  Parallel Seq Scan on streams_2025_06 streams_6  (cost=0.00..6040.09 rows=808 width=10) (actual time=33.424..33.424 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274726
+                          Buffers: shared read=2806
+                    ->  Parallel Seq Scan on streams_2025_11 streams_11  (cost=0.00..6040.09 rows=808 width=10) (actual time=32.031..32.031 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274726
+                          Buffers: shared read=2806
+                    ->  Parallel Seq Scan on streams_2026_06 streams_18  (cost=0.00..6040.08 rows=808 width=10) (actual time=0.087..26.810 rows=91575.00 loops=3)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Buffers: shared read=2806
+                    ->  Parallel Seq Scan on streams_2025_04 streams_4  (cost=0.00..6039.09 rows=808 width=10) (actual time=37.222..37.222 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274726
+                          Buffers: shared read=2805
+                    ->  Parallel Seq Scan on streams_2025_09 streams_9  (cost=0.00..6039.08 rows=808 width=10) (actual time=28.851..28.851 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274725
+                          Buffers: shared read=2805
+                    ->  Parallel Seq Scan on streams_2026_04 streams_16  (cost=0.00..6039.08 rows=808 width=10) (actual time=34.185..34.185 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 274725
+                          Buffers: shared read=2805
+                    ->  Parallel Seq Scan on streams_2026_02 streams_14  (cost=0.00..5637.47 rows=754 width=10) (actual time=32.056..32.056 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 256410
+                          Buffers: shared read=2619
+                    ->  Parallel Seq Scan on streams_2025_02 streams_2  (cost=0.00..5636.49 rows=754 width=10) (actual time=31.139..31.139 rows=0.00 loops=1)
+                          Filter: (((started_at)::date >= '2026-06-01'::date) AND ((started_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 256411
+                          Buffers: shared read=2618
+Planning:
+  Buffers: shared hit=2412 read=222
+Planning Time: 6.989 ms
+Execution Time: 318.581 ms

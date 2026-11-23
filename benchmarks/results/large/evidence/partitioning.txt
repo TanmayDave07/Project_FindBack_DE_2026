@@ -1,0 +1,62 @@
+BEGIN
+SET
+SET
+LOCK TABLE
+CREATE TABLE
+ALTER TABLE
+DO
+CREATE TABLE
+INSERT 0 5000000
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+psql:sql/08_partitioning.sql:88: NOTICE:  PASS: streams preserved exactly (EXCEPT ALL in both directions)
+DO
+DROP TABLE
+ALTER TABLE
+COMMIT
+VACUUM
+                                                                                  QUERY PLAN
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=6634.27..6634.28 rows=1 width=8) (actual time=20.837..22.371 rows=1.00 loops=1)
+   Buffers: shared hit=2806
+   ->  Gather  (cost=6634.05..6634.26 rows=2 width=8) (actual time=20.770..22.367 rows=2.00 loops=1)
+         Workers Planned: 1
+         Workers Launched: 1
+         Buffers: shared hit=2806
+         ->  Partial Aggregate  (cost=5634.05..5634.06 rows=1 width=8) (actual time=17.764..17.765 rows=1.00 loops=2)
+               Buffers: shared hit=2806
+               ->  Parallel Seq Scan on streams_2026_06 streams  (cost=0.00..5230.04 rows=161603 width=0) (actual time=0.007..12.226 rows=137362.50 loops=2)
+                     Filter: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                     Buffers: shared hit=2806
+ Planning:
+   Buffers: shared hit=137 read=17 dirtied=1
+ Planning Time: 1.480 ms
+ Execution Time: 22.391 ms
+(15 rows)
+
+        partition        | isleaf
+-------------------------+--------
+ spotify.streams         | f
+ spotify.streams_2025_01 | t
+ spotify.streams_2025_02 | t
+ spotify.streams_2025_03 | t
+ spotify.streams_2025_04 | t
+ spotify.streams_2025_05 | t
+ spotify.streams_2025_06 | t
+ spotify.streams_2025_07 | t
+ spotify.streams_2025_08 | t
+ spotify.streams_2025_09 | t
+ spotify.streams_2025_10 | t
+ spotify.streams_2025_11 | t
+ spotify.streams_2025_12 | t
+ spotify.streams_2026_01 | t
+ spotify.streams_2026_02 | t
+ spotify.streams_2026_03 | t
+ spotify.streams_2026_04 | t
+ spotify.streams_2026_05 | t
+ spotify.streams_2026_06 | t
+ spotify.streams_2026_07 | t
+ spotify.streams_other   | t
+(21 rows)

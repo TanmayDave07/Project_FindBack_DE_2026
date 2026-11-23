@@ -1,0 +1,204 @@
+=== R18 run 1 ===
+Sort  (cost=107515.60..107515.62 rows=6 width=46) (actual time=461.764..463.545 rows=6.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=19 read=51060 written=1
+  ->  Finalize GroupAggregate  (cost=107513.65..107515.52 rows=6 width=46) (actual time=461.742..463.530 rows=6.00 loops=1)
+        Group Key: streams.platform
+        Buffers: shared hit=16 read=51060 written=1
+        ->  Gather Merge  (cost=107513.65..107515.28 rows=14 width=22) (actual time=461.726..463.512 rows=18.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=16 read=51060 written=1
+              ->  Sort  (cost=106513.63..106513.64 rows=6 width=22) (actual time=457.487..457.489 rows=6.00 loops=3)
+                    Sort Key: streams.platform
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=16 read=51060 written=1
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=106513.49..106513.55 rows=6 width=22) (actual time=457.457..457.460 rows=6.00 loops=3)
+                          Group Key: streams.platform
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared read=51060 written=1
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Append  (cost=0.00..90888.45 rows=2083339 width=7) (actual time=0.109..267.701 rows=1666666.67 loops=3)
+                                Buffers: shared read=51060 written=1
+                                ->  Seq Scan on streams_2026_07 streams_19  (cost=0.00..0.00 rows=1 width=59) (actual time=0.036..0.036 rows=0.00 loops=1)
+                                ->  Seq Scan on streams_other streams_20  (cost=0.00..0.00 rows=1 width=59) (actual time=0.033..0.033 rows=0.00 loops=1)
+                                ->  Parallel Seq Scan on streams_2025_01 streams_1  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.079..33.058 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899 written=1
+                                ->  Parallel Seq Scan on streams_2025_08 streams_8  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.128..31.679 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_10 streams_10  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.096..29.065 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2026_01 streams_13  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.109..29.112 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2026_03 streams_15  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.100..27.465 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2026_05 streams_17  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.117..28.517 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_03 streams_3  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.132..25.568 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_05 streams_5  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.087..25.941 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_07 streams_7  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.108..24.332 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_12 streams_12  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.082..26.310 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_06 streams_6  (cost=0.00..4422.04 rows=161604 width=7) (actual time=0.081..24.720 rows=274726.00 loops=1)
+                                      Buffers: shared read=2806
+                                ->  Parallel Seq Scan on streams_2025_11 streams_11  (cost=0.00..4422.04 rows=161604 width=7) (actual time=0.050..7.906 rows=91575.33 loops=3)
+                                      Buffers: shared read=2806
+                                ->  Parallel Seq Scan on streams_2026_06 streams_18  (cost=0.00..4422.03 rows=161603 width=7) (actual time=0.045..12.588 rows=137362.50 loops=2)
+                                      Buffers: shared read=2806
+                                ->  Parallel Seq Scan on streams_2025_04 streams_4  (cost=0.00..4421.04 rows=161604 width=7) (actual time=0.024..24.535 rows=274726.00 loops=1)
+                                      Buffers: shared read=2805
+                                ->  Parallel Seq Scan on streams_2025_09 streams_9  (cost=0.00..4421.03 rows=161603 width=7) (actual time=0.032..28.439 rows=274725.00 loops=1)
+                                      Buffers: shared read=2805
+                                ->  Parallel Seq Scan on streams_2026_04 streams_16  (cost=0.00..4421.03 rows=161603 width=7) (actual time=0.036..26.849 rows=274725.00 loops=1)
+                                      Buffers: shared read=2805
+                                ->  Parallel Seq Scan on streams_2026_02 streams_14  (cost=0.00..4127.29 rows=150829 width=7) (actual time=0.031..26.667 rows=256410.00 loops=1)
+                                      Buffers: shared read=2619
+                                ->  Parallel Seq Scan on streams_2025_02 streams_2  (cost=0.00..4126.30 rows=150830 width=7) (actual time=0.048..29.208 rows=256411.00 loops=1)
+                                      Buffers: shared read=2618
+Planning:
+  Buffers: shared hit=2415 read=136 dirtied=2
+Planning Time: 8.446 ms
+Execution Time: 463.704 ms
+=== R18 run 2 ===
+Sort  (cost=107515.60..107515.62 rows=6 width=46) (actual time=456.775..458.596 rows=6.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=19 read=51060
+  ->  Finalize GroupAggregate  (cost=107513.65..107515.52 rows=6 width=46) (actual time=456.755..458.582 rows=6.00 loops=1)
+        Group Key: streams.platform
+        Buffers: shared hit=16 read=51060
+        ->  Gather Merge  (cost=107513.65..107515.28 rows=14 width=22) (actual time=456.741..458.566 rows=18.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=16 read=51060
+              ->  Sort  (cost=106513.63..106513.64 rows=6 width=22) (actual time=453.151..453.154 rows=6.00 loops=3)
+                    Sort Key: streams.platform
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=16 read=51060
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=106513.49..106513.55 rows=6 width=22) (actual time=453.127..453.130 rows=6.00 loops=3)
+                          Group Key: streams.platform
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared read=51060
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Append  (cost=0.00..90888.45 rows=2083339 width=7) (actual time=0.085..262.518 rows=1666666.67 loops=3)
+                                Buffers: shared read=51060
+                                ->  Seq Scan on streams_2026_07 streams_19  (cost=0.00..0.00 rows=1 width=59) (actual time=0.027..0.027 rows=0.00 loops=1)
+                                ->  Seq Scan on streams_other streams_20  (cost=0.00..0.00 rows=1 width=59) (actual time=0.031..0.031 rows=0.00 loops=1)
+                                ->  Parallel Seq Scan on streams_2025_01 streams_1  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.085..26.722 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_08 streams_8  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.077..27.358 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_10 streams_10  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.071..27.718 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2026_01 streams_13  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.067..31.692 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2026_03 streams_15  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.073..26.650 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2026_05 streams_17  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.077..27.835 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_03 streams_3  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.069..25.614 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_05 streams_5  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.068..27.421 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_07 streams_7  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.067..25.655 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_12 streams_12  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.064..27.319 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_06 streams_6  (cost=0.00..4422.04 rows=161604 width=7) (actual time=0.051..8.113 rows=91575.33 loops=3)
+                                      Buffers: shared read=2806
+                                ->  Parallel Seq Scan on streams_2025_11 streams_11  (cost=0.00..4422.04 rows=161604 width=7) (actual time=0.040..12.592 rows=137363.00 loops=2)
+                                      Buffers: shared read=2806
+                                ->  Parallel Seq Scan on streams_2026_06 streams_18  (cost=0.00..4422.03 rows=161603 width=7) (actual time=0.022..23.335 rows=274725.00 loops=1)
+                                      Buffers: shared read=2806
+                                ->  Parallel Seq Scan on streams_2025_04 streams_4  (cost=0.00..4421.04 rows=161604 width=7) (actual time=0.023..26.762 rows=274726.00 loops=1)
+                                      Buffers: shared read=2805
+                                ->  Parallel Seq Scan on streams_2025_09 streams_9  (cost=0.00..4421.03 rows=161603 width=7) (actual time=0.022..26.822 rows=274725.00 loops=1)
+                                      Buffers: shared read=2805
+                                ->  Parallel Seq Scan on streams_2026_04 streams_16  (cost=0.00..4421.03 rows=161603 width=7) (actual time=0.029..24.048 rows=274725.00 loops=1)
+                                      Buffers: shared read=2805
+                                ->  Parallel Seq Scan on streams_2026_02 streams_14  (cost=0.00..4127.29 rows=150829 width=7) (actual time=0.027..25.948 rows=256410.00 loops=1)
+                                      Buffers: shared read=2619
+                                ->  Parallel Seq Scan on streams_2025_02 streams_2  (cost=0.00..4126.30 rows=150830 width=7) (actual time=0.034..27.150 rows=256411.00 loops=1)
+                                      Buffers: shared read=2618
+Planning:
+  Buffers: shared hit=2338 read=213
+Planning Time: 6.848 ms
+Execution Time: 458.733 ms
+=== R18 run 3 ===
+Sort  (cost=107515.60..107515.62 rows=6 width=46) (actual time=451.359..453.101 rows=6.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=19 read=51060
+  ->  Finalize GroupAggregate  (cost=107513.65..107515.52 rows=6 width=46) (actual time=451.329..453.085 rows=6.00 loops=1)
+        Group Key: streams.platform
+        Buffers: shared hit=16 read=51060
+        ->  Gather Merge  (cost=107513.65..107515.28 rows=14 width=22) (actual time=451.313..453.066 rows=18.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=16 read=51060
+              ->  Sort  (cost=106513.63..106513.64 rows=6 width=22) (actual time=447.451..447.453 rows=6.00 loops=3)
+                    Sort Key: streams.platform
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=16 read=51060
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=106513.49..106513.55 rows=6 width=22) (actual time=447.427..447.430 rows=6.00 loops=3)
+                          Group Key: streams.platform
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared read=51060
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Append  (cost=0.00..90888.45 rows=2083339 width=7) (actual time=0.053..259.692 rows=1666666.67 loops=3)
+                                Buffers: shared read=51060
+                                ->  Seq Scan on streams_2026_07 streams_19  (cost=0.00..0.00 rows=1 width=59) (actual time=0.024..0.024 rows=0.00 loops=1)
+                                ->  Seq Scan on streams_other streams_20  (cost=0.00..0.00 rows=1 width=59) (actual time=0.023..0.023 rows=0.00 loops=1)
+                                ->  Parallel Seq Scan on streams_2025_01 streams_1  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.040..28.597 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_08 streams_8  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.053..27.318 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_10 streams_10  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.103..28.379 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2026_01 streams_13  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.060..28.410 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2026_03 streams_15  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.063..24.743 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2026_05 streams_17  (cost=0.00..4568.90 rows=166990 width=7) (actual time=0.049..26.226 rows=283883.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_03 streams_3  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.073..27.614 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_05 streams_5  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.056..26.757 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_07 streams_7  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.074..25.309 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_12 streams_12  (cost=0.00..4568.89 rows=166989 width=7) (actual time=0.054..27.142 rows=283882.00 loops=1)
+                                      Buffers: shared read=2899
+                                ->  Parallel Seq Scan on streams_2025_06 streams_6  (cost=0.00..4422.04 rows=161604 width=7) (actual time=0.062..8.185 rows=91575.33 loops=3)
+                                      Buffers: shared read=2806
+                                ->  Parallel Seq Scan on streams_2025_11 streams_11  (cost=0.00..4422.04 rows=161604 width=7) (actual time=0.039..13.196 rows=137363.00 loops=2)
+                                      Buffers: shared read=2806
+                                ->  Parallel Seq Scan on streams_2026_06 streams_18  (cost=0.00..4422.03 rows=161603 width=7) (actual time=0.030..26.770 rows=274725.00 loops=1)
+                                      Buffers: shared read=2806
+                                ->  Parallel Seq Scan on streams_2025_04 streams_4  (cost=0.00..4421.04 rows=161604 width=7) (actual time=0.033..23.591 rows=274726.00 loops=1)
+                                      Buffers: shared read=2805
+                                ->  Parallel Seq Scan on streams_2025_09 streams_9  (cost=0.00..4421.03 rows=161603 width=7) (actual time=0.034..23.818 rows=274725.00 loops=1)
+                                      Buffers: shared read=2805
+                                ->  Parallel Seq Scan on streams_2026_04 streams_16  (cost=0.00..4421.03 rows=161603 width=7) (actual time=0.024..26.788 rows=274725.00 loops=1)
+                                      Buffers: shared read=2805
+                                ->  Parallel Seq Scan on streams_2026_02 streams_14  (cost=0.00..4127.29 rows=150829 width=7) (actual time=0.026..23.310 rows=256410.00 loops=1)
+                                      Buffers: shared read=2619
+                                ->  Parallel Seq Scan on streams_2025_02 streams_2  (cost=0.00..4126.30 rows=150830 width=7) (actual time=0.019..23.336 rows=256411.00 loops=1)
+                                      Buffers: shared read=2618
+Planning:
+  Buffers: shared hit=2338 read=213
+Planning Time: 6.165 ms
+Execution Time: 453.202 ms

@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "tables_checked": 10,
+  "method": "row counts and 64-bit row-hash XOR before and after all rolled-back benchmark writes",
+  "partition_migration": "exact bidirectional EXCEPT ALL passed separately",
+  "counts_and_checksums_unchanged": true
+}

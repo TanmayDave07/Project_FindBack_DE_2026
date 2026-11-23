@@ -1,0 +1,875 @@
+{
+  "environment": {
+    "captured_at": "2026-11-23T11:15:22.37349+05:30",
+    "database": "spotify_cp4_large",
+    "version": "PostgreSQL 18.6 (Homebrew) on aarch64-apple-darwin25.6.0, compiled by Apple clang version 21.0.0 (clang-2100.1.1.101), 64-bit",
+    "timezone": "Asia/Kolkata",
+    "shared_buffers": "128MB",
+    "work_mem": "4MB",
+    "max_parallel_workers_per_gather": "2",
+    "enable_partition_pruning": "on",
+    "database_bytes": 2236331711
+  },
+  "host": {
+    "machine": "arm64",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O"
+  },
+  "tables": {
+    "artists": {
+      "rows": 60000,
+      "checksum": "7536841230804802117"
+    },
+    "users": {
+      "rows": 600000,
+      "checksum": "4654994910977200976"
+    },
+    "albums": {
+      "rows": 240000,
+      "checksum": "-1866348103862066501"
+    },
+    "playlists": {
+      "rows": 200000,
+      "checksum": "-3655077094813134248"
+    },
+    "tracks": {
+      "rows": 1360381,
+      "checksum": "3438012977112895937"
+    },
+    "track_artists": {
+      "rows": 1554720,
+      "checksum": "9033489459854532564"
+    },
+    "playlist_tracks": {
+      "rows": 2400008,
+      "checksum": "-4044829148589592025"
+    },
+    "liked_tracks": {
+      "rows": 1171457,
+      "checksum": "2068193019788328098"
+    },
+    "artist_follows": {
+      "rows": 1399801,
+      "checksum": "-6161747308581661598"
+    },
+    "streams": {
+      "rows": 5000000,
+      "checksum": "-1990438270114386339"
+    }
+  },
+  "relations": [
+    {
+      "name": "albums",
+      "relkind": "r",
+      "table_bytes": 22020096,
+      "index_bytes": 18415616,
+      "total_bytes": 40435712
+    },
+    {
+      "name": "artist_follows",
+      "relkind": "r",
+      "table_bytes": 62169088,
+      "index_bytes": 31481856,
+      "total_bytes": 93650944
+    },
+    {
+      "name": "artists",
+      "relkind": "r",
+      "table_bytes": 4792320,
+      "index_bytes": 2711552,
+      "total_bytes": 7503872
+    },
+    {
+      "name": "liked_tracks",
+      "relkind": "r",
+      "table_bytes": 52207616,
+      "index_bytes": 26345472,
+      "total_bytes": 78553088
+    },
+    {
+      "name": "playlist_duplicates",
+      "relkind": "m",
+      "table_bytes": 1630208,
+      "index_bytes": 1974272,
+      "total_bytes": 3604480
+    },
+    {
+      "name": "playlist_tracks",
+      "relkind": "r",
+      "table_bytes": 125755392,
+      "index_bytes": 173842432,
+      "total_bytes": 299597824
+    },
+    {
+      "name": "playlists",
+      "relkind": "r",
+      "table_bytes": 13295616,
+      "index_bytes": 4513792,
+      "total_bytes": 17809408
+    },
+    {
+      "name": "streams_2025_01",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43130880,
+      "total_bytes": 66912256
+    },
+    {
+      "name": "streams_2025_02",
+      "relkind": "r",
+      "table_bytes": 21479424,
+      "index_bytes": 39018496,
+      "total_bytes": 60497920
+    },
+    {
+      "name": "streams_2025_03",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43139072,
+      "total_bytes": 66920448
+    },
+    {
+      "name": "streams_2025_04",
+      "relkind": "r",
+      "table_bytes": 23011328,
+      "index_bytes": 41779200,
+      "total_bytes": 64790528
+    },
+    {
+      "name": "streams_2025_05",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43147264,
+      "total_bytes": 66928640
+    },
+    {
+      "name": "streams_2025_06",
+      "relkind": "r",
+      "table_bytes": 23019520,
+      "index_bytes": 41787392,
+      "total_bytes": 64806912
+    },
+    {
+      "name": "streams_2025_07",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43163648,
+      "total_bytes": 66945024
+    },
+    {
+      "name": "streams_2025_08",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43155456,
+      "total_bytes": 66936832
+    },
+    {
+      "name": "streams_2025_09",
+      "relkind": "r",
+      "table_bytes": 23011328,
+      "index_bytes": 41795584,
+      "total_bytes": 64806912
+    },
+    {
+      "name": "streams_2025_10",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43163648,
+      "total_bytes": 66945024
+    },
+    {
+      "name": "streams_2025_11",
+      "relkind": "r",
+      "table_bytes": 23019520,
+      "index_bytes": 41803776,
+      "total_bytes": 64823296
+    },
+    {
+      "name": "streams_2025_12",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43180032,
+      "total_bytes": 66961408
+    },
+    {
+      "name": "streams_2026_01",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43171840,
+      "total_bytes": 66953216
+    },
+    {
+      "name": "streams_2026_02",
+      "relkind": "r",
+      "table_bytes": 21487616,
+      "index_bytes": 39059456,
+      "total_bytes": 60547072
+    },
+    {
+      "name": "streams_2026_03",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43180032,
+      "total_bytes": 66961408
+    },
+    {
+      "name": "streams_2026_04",
+      "relkind": "r",
+      "table_bytes": 23011328,
+      "index_bytes": 41803776,
+      "total_bytes": 64815104
+    },
+    {
+      "name": "streams_2026_05",
+      "relkind": "r",
+      "table_bytes": 23781376,
+      "index_bytes": 43188224,
+      "total_bytes": 66969600
+    },
+    {
+      "name": "streams_2026_06",
+      "relkind": "r",
+      "table_bytes": 23019520,
+      "index_bytes": 41811968,
+      "total_bytes": 64831488
+    },
+    {
+      "name": "streams_2026_07",
+      "relkind": "r",
+      "table_bytes": 0,
+      "index_bytes": 40960,
+      "total_bytes": 40960
+    },
+    {
+      "name": "streams_other",
+      "relkind": "r",
+      "table_bytes": 0,
+      "index_bytes": 40960,
+      "total_bytes": 40960
+    },
+    {
+      "name": "track_artists",
+      "relkind": "r",
+      "table_bytes": 70565888,
+      "index_bytes": 69877760,
+      "total_bytes": 140443648
+    },
+    {
+      "name": "tracks",
+      "relkind": "r",
+      "table_bytes": 109764608,
+      "index_bytes": 135823360,
+      "total_bytes": 245587968
+    },
+    {
+      "name": "users",
+      "relkind": "r",
+      "table_bytes": 57425920,
+      "index_bytes": 63086592,
+      "total_bytes": 120512512
+    }
+  ],
+  "indexes": [
+    {
+      "name": "idx_albums_artist_release",
+      "table_name": "albums",
+      "bytes": 5414912
+    },
+    {
+      "name": "idx_playlist_duplicates_key",
+      "table_name": "playlist_duplicates",
+      "bytes": 827392
+    },
+    {
+      "name": "idx_playlist_duplicates_order",
+      "table_name": "playlist_duplicates",
+      "bytes": 1146880
+    },
+    {
+      "name": "idx_playlist_tracks_playlist_track",
+      "table_name": "playlist_tracks",
+      "bytes": 75620352
+    },
+    {
+      "name": "idx_playlist_tracks_track",
+      "table_name": "playlist_tracks",
+      "bytes": 44474368
+    },
+    {
+      "name": "idx_track_artists_artist_track",
+      "table_name": "track_artists",
+      "bytes": 34938880
+    },
+    {
+      "name": "pk_albums",
+      "table_name": "albums",
+      "bytes": 5406720
+    },
+    {
+      "name": "pk_artist_follows",
+      "table_name": "artist_follows",
+      "bytes": 31481856
+    },
+    {
+      "name": "pk_artists",
+      "table_name": "artists",
+      "bytes": 2711552
+    },
+    {
+      "name": "pk_liked_tracks",
+      "table_name": "liked_tracks",
+      "bytes": 26345472
+    },
+    {
+      "name": "pk_playlist_tracks",
+      "table_name": "playlist_tracks",
+      "bytes": 53747712
+    },
+    {
+      "name": "pk_playlists",
+      "table_name": "playlists",
+      "bytes": 4513792
+    },
+    {
+      "name": "pk_track_artists",
+      "table_name": "track_artists",
+      "bytes": 34938880
+    },
+    {
+      "name": "pk_tracks",
+      "table_name": "tracks",
+      "bytes": 30572544
+    },
+    {
+      "name": "pk_users",
+      "table_name": "users",
+      "bytes": 13500416
+    },
+    {
+      "name": "streams_2025_01_pkey",
+      "table_name": "streams_2025_01",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2025_01_playlist_id_idx",
+      "table_name": "streams_2025_01",
+      "bytes": 2482176
+    },
+    {
+      "name": "streams_2025_01_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_01",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2025_01_track_id_idx",
+      "table_name": "streams_2025_01",
+      "bytes": 6078464
+    },
+    {
+      "name": "streams_2025_01_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_01",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2025_02_pkey",
+      "table_name": "streams_2025_02",
+      "bytes": 8101888
+    },
+    {
+      "name": "streams_2025_02_playlist_id_idx",
+      "table_name": "streams_2025_02",
+      "bytes": 2252800
+    },
+    {
+      "name": "streams_2025_02_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_02",
+      "bytes": 10412032
+    },
+    {
+      "name": "streams_2025_02_track_id_idx",
+      "table_name": "streams_2025_02",
+      "bytes": 5529600
+    },
+    {
+      "name": "streams_2025_02_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_02",
+      "bytes": 12722176
+    },
+    {
+      "name": "streams_2025_03_pkey",
+      "table_name": "streams_2025_03",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2025_03_playlist_id_idx",
+      "table_name": "streams_2025_03",
+      "bytes": 2473984
+    },
+    {
+      "name": "streams_2025_03_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_03",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2025_03_track_id_idx",
+      "table_name": "streams_2025_03",
+      "bytes": 6094848
+    },
+    {
+      "name": "streams_2025_03_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_03",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2025_04_pkey",
+      "table_name": "streams_2025_04",
+      "bytes": 8675328
+    },
+    {
+      "name": "streams_2025_04_playlist_id_idx",
+      "table_name": "streams_2025_04",
+      "bytes": 2408448
+    },
+    {
+      "name": "streams_2025_04_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_04",
+      "bytes": 11149312
+    },
+    {
+      "name": "streams_2025_04_track_id_idx",
+      "table_name": "streams_2025_04",
+      "bytes": 5914624
+    },
+    {
+      "name": "streams_2025_04_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_04",
+      "bytes": 13631488
+    },
+    {
+      "name": "streams_2025_05_pkey",
+      "table_name": "streams_2025_05",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2025_05_playlist_id_idx",
+      "table_name": "streams_2025_05",
+      "bytes": 2473984
+    },
+    {
+      "name": "streams_2025_05_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_05",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2025_05_track_id_idx",
+      "table_name": "streams_2025_05",
+      "bytes": 6103040
+    },
+    {
+      "name": "streams_2025_05_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_05",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2025_06_pkey",
+      "table_name": "streams_2025_06",
+      "bytes": 8675328
+    },
+    {
+      "name": "streams_2025_06_playlist_id_idx",
+      "table_name": "streams_2025_06",
+      "bytes": 2408448
+    },
+    {
+      "name": "streams_2025_06_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_06",
+      "bytes": 11149312
+    },
+    {
+      "name": "streams_2025_06_track_id_idx",
+      "table_name": "streams_2025_06",
+      "bytes": 5922816
+    },
+    {
+      "name": "streams_2025_06_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_06",
+      "bytes": 13631488
+    },
+    {
+      "name": "streams_2025_07_pkey",
+      "table_name": "streams_2025_07",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2025_07_playlist_id_idx",
+      "table_name": "streams_2025_07",
+      "bytes": 2482176
+    },
+    {
+      "name": "streams_2025_07_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_07",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2025_07_track_id_idx",
+      "table_name": "streams_2025_07",
+      "bytes": 6111232
+    },
+    {
+      "name": "streams_2025_07_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_07",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2025_08_pkey",
+      "table_name": "streams_2025_08",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2025_08_playlist_id_idx",
+      "table_name": "streams_2025_08",
+      "bytes": 2473984
+    },
+    {
+      "name": "streams_2025_08_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_08",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2025_08_track_id_idx",
+      "table_name": "streams_2025_08",
+      "bytes": 6111232
+    },
+    {
+      "name": "streams_2025_08_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_08",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2025_09_pkey",
+      "table_name": "streams_2025_09",
+      "bytes": 8675328
+    },
+    {
+      "name": "streams_2025_09_playlist_id_idx",
+      "table_name": "streams_2025_09",
+      "bytes": 2408448
+    },
+    {
+      "name": "streams_2025_09_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_09",
+      "bytes": 11149312
+    },
+    {
+      "name": "streams_2025_09_track_id_idx",
+      "table_name": "streams_2025_09",
+      "bytes": 5931008
+    },
+    {
+      "name": "streams_2025_09_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_09",
+      "bytes": 13631488
+    },
+    {
+      "name": "streams_2025_10_pkey",
+      "table_name": "streams_2025_10",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2025_10_playlist_id_idx",
+      "table_name": "streams_2025_10",
+      "bytes": 2473984
+    },
+    {
+      "name": "streams_2025_10_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_10",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2025_10_track_id_idx",
+      "table_name": "streams_2025_10",
+      "bytes": 6119424
+    },
+    {
+      "name": "streams_2025_10_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_10",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2025_11_pkey",
+      "table_name": "streams_2025_11",
+      "bytes": 8675328
+    },
+    {
+      "name": "streams_2025_11_playlist_id_idx",
+      "table_name": "streams_2025_11",
+      "bytes": 2408448
+    },
+    {
+      "name": "streams_2025_11_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_11",
+      "bytes": 11149312
+    },
+    {
+      "name": "streams_2025_11_track_id_idx",
+      "table_name": "streams_2025_11",
+      "bytes": 5939200
+    },
+    {
+      "name": "streams_2025_11_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_11",
+      "bytes": 13631488
+    },
+    {
+      "name": "streams_2025_12_pkey",
+      "table_name": "streams_2025_12",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2025_12_playlist_id_idx",
+      "table_name": "streams_2025_12",
+      "bytes": 2490368
+    },
+    {
+      "name": "streams_2025_12_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2025_12",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2025_12_track_id_idx",
+      "table_name": "streams_2025_12",
+      "bytes": 6119424
+    },
+    {
+      "name": "streams_2025_12_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2025_12",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2026_01_pkey",
+      "table_name": "streams_2026_01",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2026_01_playlist_id_idx",
+      "table_name": "streams_2026_01",
+      "bytes": 2473984
+    },
+    {
+      "name": "streams_2026_01_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2026_01",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2026_01_track_id_idx",
+      "table_name": "streams_2026_01",
+      "bytes": 6127616
+    },
+    {
+      "name": "streams_2026_01_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2026_01",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2026_02_pkey",
+      "table_name": "streams_2026_02",
+      "bytes": 8101888
+    },
+    {
+      "name": "streams_2026_02_playlist_id_idx",
+      "table_name": "streams_2026_02",
+      "bytes": 2260992
+    },
+    {
+      "name": "streams_2026_02_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2026_02",
+      "bytes": 10412032
+    },
+    {
+      "name": "streams_2026_02_track_id_idx",
+      "table_name": "streams_2026_02",
+      "bytes": 5562368
+    },
+    {
+      "name": "streams_2026_02_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2026_02",
+      "bytes": 12722176
+    },
+    {
+      "name": "streams_2026_03_pkey",
+      "table_name": "streams_2026_03",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2026_03_playlist_id_idx",
+      "table_name": "streams_2026_03",
+      "bytes": 2482176
+    },
+    {
+      "name": "streams_2026_03_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2026_03",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2026_03_track_id_idx",
+      "table_name": "streams_2026_03",
+      "bytes": 6127616
+    },
+    {
+      "name": "streams_2026_03_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2026_03",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2026_04_pkey",
+      "table_name": "streams_2026_04",
+      "bytes": 8675328
+    },
+    {
+      "name": "streams_2026_04_playlist_id_idx",
+      "table_name": "streams_2026_04",
+      "bytes": 2408448
+    },
+    {
+      "name": "streams_2026_04_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2026_04",
+      "bytes": 11149312
+    },
+    {
+      "name": "streams_2026_04_track_id_idx",
+      "table_name": "streams_2026_04",
+      "bytes": 5939200
+    },
+    {
+      "name": "streams_2026_04_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2026_04",
+      "bytes": 13631488
+    },
+    {
+      "name": "streams_2026_05_pkey",
+      "table_name": "streams_2026_05",
+      "bytes": 8962048
+    },
+    {
+      "name": "streams_2026_05_playlist_id_idx",
+      "table_name": "streams_2026_05",
+      "bytes": 2482176
+    },
+    {
+      "name": "streams_2026_05_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2026_05",
+      "bytes": 11517952
+    },
+    {
+      "name": "streams_2026_05_track_id_idx",
+      "table_name": "streams_2026_05",
+      "bytes": 6135808
+    },
+    {
+      "name": "streams_2026_05_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2026_05",
+      "bytes": 14090240
+    },
+    {
+      "name": "streams_2026_06_pkey",
+      "table_name": "streams_2026_06",
+      "bytes": 8675328
+    },
+    {
+      "name": "streams_2026_06_playlist_id_idx",
+      "table_name": "streams_2026_06",
+      "bytes": 2416640
+    },
+    {
+      "name": "streams_2026_06_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2026_06",
+      "bytes": 11149312
+    },
+    {
+      "name": "streams_2026_06_track_id_idx",
+      "table_name": "streams_2026_06",
+      "bytes": 5939200
+    },
+    {
+      "name": "streams_2026_06_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2026_06",
+      "bytes": 13631488
+    },
+    {
+      "name": "streams_2026_07_pkey",
+      "table_name": "streams_2026_07",
+      "bytes": 8192
+    },
+    {
+      "name": "streams_2026_07_playlist_id_idx",
+      "table_name": "streams_2026_07",
+      "bytes": 8192
+    },
+    {
+      "name": "streams_2026_07_started_at_track_id_stream_id_user_id_ms_pl_idx",
+      "table_name": "streams_2026_07",
+      "bytes": 8192
+    },
+    {
+      "name": "streams_2026_07_track_id_idx",
+      "table_name": "streams_2026_07",
+      "bytes": 8192
+    },
+    {
+      "name": "streams_2026_07_user_id_started_at_track_id_ms_played_platf_idx",
+      "table_name": "streams_2026_07",
+      "bytes": 8192
+    },
+    {
+      "name": "streams_other_pkey",
+      "table_name": "streams_other",
+      "bytes": 8192
+    },
+    {
+      "name": "streams_other_playlist_id_idx",
+      "table_name": "streams_other",
+      "bytes": 8192
+    },
+    {
+      "name": "streams_other_started_at_track_id_stream_id_user_id_ms_play_idx",
+      "table_name": "streams_other",
+      "bytes": 8192
+    },
+    {
+      "name": "streams_other_track_id_idx",
+      "table_name": "streams_other",
+      "bytes": 8192
+    },
+    {
+      "name": "streams_other_user_id_started_at_track_id_ms_played_platfor_idx",
+      "table_name": "streams_other",
+      "bytes": 8192
+    },
+    {
+      "name": "uq_albums_upc",
+      "table_name": "albums",
+      "bytes": 7593984
+    },
+    {
+      "name": "uq_tracks_album_disc_track",
+      "table_name": "tracks",
+      "bytes": 30597120
+    },
+    {
+      "name": "uq_tracks_isrc",
+      "table_name": "tracks",
+      "bytes": 74653696
+    },
+    {
+      "name": "uq_users_email",
+      "table_name": "users",
+      "bytes": 49586176
+    }
+  ],
+  "integrity": {
+    "streams_longer_than_track": 0,
+    "tracks_without_exactly_one_primary_artist": 0,
+    "streams_before_album_release": 0,
+    "stream_min": "2025-01-01T00:00:00+05:30",
+    "stream_max": "2026-06-30T23:59:50+05:30"
+  }
+}

@@ -1,0 +1,140 @@
+=== W04 run 1 ===
+Update on artists ar  (cost=310270.64..323438.55 rows=0 width=0) (actual time=1907.727..1907.732 rows=0.00 loops=1)
+  Buffers: shared hit=426550 read=9647 dirtied=1495 written=734, temp read=8849 written=8868
+  ->  Hash Join  (cost=310270.64..323438.55 rows=60000 width=46) (actual time=1331.132..1569.422 rows=60000.00 loops=1)
+        Hash Cond: (s.artist_id = ar.artist_id)
+        Buffers: shared hit=4201 read=9481, temp read=8849 written=8868
+        ->  Subquery Scan on s  (cost=308328.64..321189.04 rows=60000 width=48) (actual time=1312.323..1529.383 rows=60000.00 loops=1)
+              Buffers: shared hit=4201 read=8889, temp read=8849 written=8868
+              ->  GroupAggregate  (cost=308328.64..320589.04 rows=60000 width=12) (actual time=1312.292..1521.639 rows=60000.00 loops=1)
+                    Group Key: a.artist_id
+                    Buffers: shared hit=4201 read=8889, temp read=8849 written=8868
+                    ->  Sort  (cost=308328.64..312215.44 rows=1554720 width=8) (actual time=1311.904..1423.123 rows=1593947.00 loops=1)
+                          Sort Key: a.artist_id, st.user_id
+                          Sort Method: external merge  Disk: 23064kB
+                          Buffers: shared hit=4201 read=8889, temp read=8849 written=8868
+                          ->  Hash Left Join  (cost=67091.15..127180.49 rows=1554720 width=8) (actual time=84.200..846.747 rows=1593947.00 loops=1)
+                                Hash Cond: (ta.track_id = st.track_id)
+                                Buffers: shared hit=4198 read=8889, temp read=3092 written=3092
+                                ->  Hash Right Join  (cost=1942.00..30178.63 rows=1554720 width=8) (actual time=10.348..340.786 rows=1554720.00 loops=1)
+                                      Hash Cond: (ta.artist_id = a.artist_id)
+                                      Buffers: shared hit=594 read=8606
+                                      ->  Seq Scan on track_artists ta  (cost=0.00..24155.20 rows=1554720 width=8) (actual time=0.097..78.832 rows=1554720.00 loops=1)
+                                            Buffers: shared hit=2 read=8606
+                                      ->  Hash  (cost=1192.00..1192.00 rows=60000 width=4) (actual time=10.176..10.177 rows=60000.00 loops=1)
+                                            Buckets: 65536  Batches: 1  Memory Usage: 2622kB
+                                            Buffers: shared hit=592
+                                            ->  Seq Scan on artists a  (cost=0.00..1192.00 rows=60000 width=4) (actual time=0.016..4.400 rows=60000.00 loops=1)
+                                                  Buffers: shared hit=592
+                                ->  Hash  (cost=61061.13..61061.13 rows=249121 width=8) (actual time=73.544..73.545 rows=256410.00 loops=1)
+                                      Buckets: 262144  Batches: 2  Memory Usage: 7060kB
+                                      Buffers: shared hit=3604 read=283, temp written=437
+                                      ->  Bitmap Heap Scan on streams st  (cost=6859.12..61061.13 rows=249121 width=8) (actual time=11.794..42.201 rows=256410.00 loops=1)
+                                            Recheck Cond: (started_at >= '2026-06-03 00:00:00+05:30'::timestamp with time zone)
+                                            Heap Blocks: exact=2621
+                                            Buffers: shared hit=3604 read=283
+                                            ->  Bitmap Index Scan on idx_streams_started_track  (cost=0.00..6796.84 rows=249121 width=0) (actual time=11.481..11.482 rows=256413.00 loops=1)
+                                                  Index Cond: (started_at >= '2026-06-03 00:00:00+05:30'::timestamp with time zone)
+                                                  Index Searches: 1
+                                                  Buffers: shared hit=988 read=278
+        ->  Hash  (cost=1192.00..1192.00 rows=60000 width=10) (actual time=18.723..18.724 rows=60000.00 loops=1)
+              Buckets: 65536  Batches: 1  Memory Usage: 3091kB
+              Buffers: shared read=592
+              ->  Seq Scan on artists ar  (cost=0.00..1192.00 rows=60000 width=10) (actual time=0.076..7.746 rows=60000.00 loops=1)
+                    Buffers: shared read=592
+Planning:
+  Buffers: shared hit=276 read=21
+Planning Time: 4.971 ms
+Execution Time: 1915.082 ms
+=== W04 run 2 ===
+Update on artists ar  (cost=310195.34..330521.36 rows=0 width=0) (actual time=1802.417..1802.421 rows=0.00 loops=1)
+  Buffers: shared hit=586381 read=8512 dirtied=580 written=580, temp read=8849 written=8868
+  ->  Merge Join  (cost=310195.34..330521.36 rows=117669 width=46) (actual time=1254.203..1503.023 rows=60000.00 loops=1)
+        Merge Cond: (ar.artist_id = s.artist_id)
+        Buffers: shared hit=125682 read=8512, temp read=8849 written=8868
+        ->  Index Scan using pk_artists on artists ar  (cost=0.29..4253.33 rows=117669 width=10) (actual time=0.005..21.336 rows=60000.00 loops=1)
+              Index Searches: 1
+              Buffers: shared hit=120538
+        ->  Subquery Scan on s  (cost=310195.04..324208.82 rows=117669 width=48) (actual time=1254.190..1470.698 rows=60000.00 loops=1)
+              Buffers: shared hit=5144 read=8512, temp read=8849 written=8868
+              ->  GroupAggregate  (cost=310195.04..323032.13 rows=117669 width=12) (actual time=1254.161..1463.169 rows=60000.00 loops=1)
+                    Group Key: a.artist_id
+                    Buffers: shared hit=5144 read=8512, temp read=8849 written=8868
+                    ->  Sort  (cost=310195.04..314081.84 rows=1554720 width=8) (actual time=1253.769..1365.354 rows=1593947.00 loops=1)
+                          Sort Key: a.artist_id, st.user_id
+                          Sort Method: external merge  Disk: 23064kB
+                          Buffers: shared hit=5144 read=8512, temp read=8849 written=8868
+                          ->  Hash Left Join  (cost=68957.70..129046.90 rows=1554720 width=8) (actual time=75.172..783.814 rows=1593947.00 loops=1)
+                                Hash Cond: (ta.track_id = st.track_id)
+                                Buffers: shared hit=5144 read=8512, temp read=3092 written=3092
+                                ->  Hash Right Join  (cost=3808.55..32045.04 rows=1554720 width=8) (actual time=11.668..319.214 rows=1554720.00 loops=1)
+                                      Hash Cond: (ta.artist_id = a.artist_id)
+                                      Buffers: shared hit=1257 read=8512
+                                      ->  Seq Scan on track_artists ta  (cost=0.00..24155.20 rows=1554720 width=8) (actual time=0.060..76.850 rows=1554720.00 loops=1)
+                                            Buffers: shared hit=96 read=8512
+                                      ->  Hash  (cost=2337.69..2337.69 rows=117669 width=4) (actual time=11.484..11.485 rows=60000.00 loops=1)
+                                            Buckets: 131072  Batches: 1  Memory Usage: 3134kB
+                                            Buffers: shared hit=1161
+                                            ->  Seq Scan on artists a  (cost=0.00..2337.69 rows=117669 width=4) (actual time=0.004..7.641 rows=60000.00 loops=1)
+                                                  Buffers: shared hit=1161
+                                ->  Hash  (cost=61061.13..61061.13 rows=249121 width=8) (actual time=63.249..63.250 rows=256410.00 loops=1)
+                                      Buckets: 262144  Batches: 2  Memory Usage: 7060kB
+                                      Buffers: shared hit=3887, temp written=437
+                                      ->  Bitmap Heap Scan on streams st  (cost=6859.12..61061.13 rows=249121 width=8) (actual time=9.082..37.144 rows=256410.00 loops=1)
+                                            Recheck Cond: (started_at >= '2026-06-03 00:00:00+05:30'::timestamp with time zone)
+                                            Heap Blocks: exact=2621
+                                            Buffers: shared hit=3887
+                                            ->  Bitmap Index Scan on idx_streams_started_track  (cost=0.00..6796.84 rows=249121 width=0) (actual time=8.776..8.776 rows=256413.00 loops=1)
+                                                  Index Cond: (started_at >= '2026-06-03 00:00:00+05:30'::timestamp with time zone)
+                                                  Index Searches: 1
+                                                  Buffers: shared hit=1266
+Planning:
+  Buffers: shared hit=300
+Planning Time: 1.092 ms
+Execution Time: 1807.665 ms
+=== W04 run 3 ===
+Update on artists ar  (cost=325625.93..349618.12 rows=0 width=0) (actual time=2223.838..2223.841 rows=0.00 loops=1)
+  Buffers: shared hit=593263 read=8418 dirtied=580 written=580, temp read=11541 written=11560
+  ->  Merge Join  (cost=325625.93..349618.12 rows=176453 width=46) (actual time=1624.170..1919.670 rows=60000.00 loops=1)
+        Merge Cond: (ar.artist_id = s.artist_id)
+        Buffers: shared hit=132978 read=8418, temp read=11541 written=11560
+        ->  Index Scan using pk_artists on artists ar  (cost=0.29..5715.09 rows=176453 width=10) (actual time=0.005..24.575 rows=60000.00 loops=1)
+              Index Searches: 1
+              Buffers: shared hit=127160
+        ->  Subquery Scan on s  (cost=325625.64..340815.10 rows=176453 width=48) (actual time=1624.161..1880.591 rows=60000.00 loops=1)
+              Buffers: shared hit=5818 read=8418, temp read=11541 written=11560
+              ->  GroupAggregate  (cost=325625.64..339050.57 rows=176453 width=12) (actual time=1624.133..1871.356 rows=60000.00 loops=1)
+                    Group Key: a.artist_id
+                    Buffers: shared hit=5818 read=8418, temp read=11541 written=11560
+                    ->  Sort  (cost=325625.64..329512.44 rows=1554720 width=8) (actual time=1623.697..1747.062 rows=1593947.00 loops=1)
+                          Sort Key: a.artist_id, st.user_id
+                          Sort Method: external merge  Disk: 23064kB
+                          Buffers: shared hit=5818 read=8418, temp read=11541 written=11560
+                          ->  Hash Left Join  (cost=71550.34..144477.50 rows=1554720 width=8) (actual time=80.978..1094.806 rows=1593947.00 loops=1)
+                                Hash Cond: (ta.track_id = st.track_id)
+                                Buffers: shared hit=5818 read=8418, temp read=5785 written=5785
+                                ->  Hash Right Join  (cost=6401.19..47475.63 rows=1554720 width=8) (actual time=16.078..508.841 rows=1554720.00 loops=1)
+                                      Hash Cond: (ta.artist_id = a.artist_id)
+                                      Buffers: shared hit=1931 read=8418, temp read=2693 written=2693
+                                      ->  Seq Scan on track_artists ta  (cost=0.00..24155.20 rows=1554720 width=8) (actual time=0.062..113.234 rows=1554720.00 loops=1)
+                                            Buffers: shared hit=190 read=8418
+                                      ->  Hash  (cost=3505.53..3505.53 rows=176453 width=4) (actual time=15.788..15.788 rows=60000.00 loops=1)
+                                            Buckets: 262144  Batches: 2  Memory Usage: 3110kB
+                                            Buffers: shared hit=1741, temp written=87
+                                            ->  Seq Scan on artists a  (cost=0.00..3505.53 rows=176453 width=4) (actual time=0.004..9.390 rows=60000.00 loops=1)
+                                                  Buffers: shared hit=1741
+                                ->  Hash  (cost=61061.13..61061.13 rows=249121 width=8) (actual time=64.691..64.691 rows=256410.00 loops=1)
+                                      Buckets: 262144  Batches: 2  Memory Usage: 7060kB
+                                      Buffers: shared hit=3887, temp written=437
+                                      ->  Bitmap Heap Scan on streams st  (cost=6859.12..61061.13 rows=249121 width=8) (actual time=8.734..37.190 rows=256410.00 loops=1)
+                                            Recheck Cond: (started_at >= '2026-06-03 00:00:00+05:30'::timestamp with time zone)
+                                            Heap Blocks: exact=2621
+                                            Buffers: shared hit=3887
+                                            ->  Bitmap Index Scan on idx_streams_started_track  (cost=0.00..6796.84 rows=249121 width=0) (actual time=8.434..8.434 rows=256413.00 loops=1)
+                                                  Index Cond: (started_at >= '2026-06-03 00:00:00+05:30'::timestamp with time zone)
+                                                  Index Searches: 1
+                                                  Buffers: shared hit=1266
+Planning:
+  Buffers: shared hit=300
+Planning Time: 1.289 ms
+Execution Time: 2227.737 ms

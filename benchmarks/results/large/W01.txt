@@ -1,0 +1,33 @@
+=== W01 run 1 ===
+Insert on streams  (cost=0.00..0.01 rows=0 width=0) (actual time=0.694..0.694 rows=0.00 loops=1)
+  Buffers: shared hit=142 read=12 dirtied=9 written=5
+  ->  Result  (cost=0.00..0.01 rows=1 width=146) (actual time=0.003..0.003 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.059 ms
+Trigger for constraint fk_streams_partitioned_playlist on streams_2026_07: time=0.388 calls=1
+Trigger for constraint fk_streams_partitioned_track on streams_2026_07: time=0.931 calls=1
+Trigger for constraint fk_streams_partitioned_user on streams_2026_07: time=0.311 calls=1
+Execution Time: 2.628 ms
+=== W01 run 2 ===
+Insert on streams  (cost=0.00..0.01 rows=0 width=0) (actual time=0.252..0.252 rows=0.00 loops=1)
+  Buffers: shared hit=156
+  ->  Result  (cost=0.00..0.01 rows=1 width=146) (actual time=0.003..0.003 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.051 ms
+Trigger for constraint fk_streams_partitioned_playlist on streams_2026_07: time=0.047 calls=1
+Trigger for constraint fk_streams_partitioned_track on streams_2026_07: time=0.418 calls=1
+Trigger for constraint fk_streams_partitioned_user on streams_2026_07: time=0.202 calls=1
+Execution Time: 1.085 ms
+=== W01 run 3 ===
+Insert on streams  (cost=0.00..0.01 rows=0 width=0) (actual time=0.272..0.272 rows=0.00 loops=1)
+  Buffers: shared hit=156
+  ->  Result  (cost=0.00..0.01 rows=1 width=146) (actual time=0.003..0.003 rows=1.00 loops=1)
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.056 ms
+Trigger for constraint fk_streams_partitioned_playlist on streams_2026_07: time=0.052 calls=1
+Trigger for constraint fk_streams_partitioned_track on streams_2026_07: time=0.427 calls=1
+Trigger for constraint fk_streams_partitioned_user on streams_2026_07: time=0.204 calls=1
+Execution Time: 1.135 ms

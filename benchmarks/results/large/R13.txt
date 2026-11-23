@@ -1,0 +1,285 @@
+=== R13 run 1 ===
+Gather  (cost=4721.45..80560.23 rows=62054 width=24) (actual time=206.852..218.555 rows=37933.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=32 read=6927
+  ->  Parallel Hash Right Anti Join  (cost=3721.45..73354.83 rows=25856 width=24) (actual time=203.490..206.028 rows=12644.33 loops=3)
+        Hash Cond: (s.playlist_id = p.playlist_id)
+        Buffers: shared hit=32 read=6927
+        ->  Parallel Append  (cost=0.00..52408.13 rows=2083338 width=4) (actual time=0.155..101.441 rows=749471.00 loops=3)
+              Buffers: shared hit=32 read=5308
+              ->  Seq Scan on streams_2026_07 s_19  (cost=0.00..0.00 rows=1 width=4) (actual time=0.056..0.056 rows=0.00 loops=1)
+              ->  Seq Scan on streams_other s_20  (cost=0.00..0.00 rows=1 width=4) (actual time=0.057..0.058 rows=0.00 loops=1)
+              ->  Parallel Index Only Scan using streams_2025_12_playlist_id_idx on streams_2025_12 s_12  (cost=0.42..2397.06 rows=118284 width=4) (actual time=0.110..10.215 rows=128255.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=302
+              ->  Parallel Index Only Scan using streams_2026_03_playlist_id_idx on streams_2026_03 s_15  (cost=0.42..2388.64 rows=118285 width=4) (actual time=0.167..10.322 rows=127587.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=301
+              ->  Parallel Index Only Scan using streams_2025_08_playlist_id_idx on streams_2025_08 s_8  (cost=0.42..2385.86 rows=118285 width=4) (actual time=0.136..10.358 rows=127646.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=300
+              ->  Parallel Index Only Scan using streams_2026_05_playlist_id_idx on streams_2026_05 s_17  (cost=0.42..2384.83 rows=118285 width=4) (actual time=0.100..10.332 rows=127857.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=301
+              ->  Parallel Index Only Scan using streams_2025_05_playlist_id_idx on streams_2025_05 s_5  (cost=0.42..2381.16 rows=118284 width=4) (actual time=0.096..9.401 rows=127548.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=300
+              ->  Parallel Index Only Scan using streams_2025_01_playlist_id_idx on streams_2025_01 s_1  (cost=0.42..2381.09 rows=118285 width=4) (actual time=0.104..9.408 rows=127796.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=301
+              ->  Parallel Index Only Scan using streams_2025_03_playlist_id_idx on streams_2025_03 s_3  (cost=0.42..2377.78 rows=118284 width=4) (actual time=0.096..8.413 rows=127361.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=300
+              ->  Parallel Index Only Scan using streams_2025_07_playlist_id_idx on streams_2025_07 s_7  (cost=0.42..2373.81 rows=118284 width=4) (actual time=0.086..8.787 rows=127644.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=301
+              ->  Parallel Index Only Scan using streams_2025_10_playlist_id_idx on streams_2025_10 s_10  (cost=0.42..2370.76 rows=118285 width=4) (actual time=0.086..8.153 rows=127554.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=300
+              ->  Parallel Index Only Scan using streams_2026_01_playlist_id_idx on streams_2026_01 s_13  (cost=0.42..2369.28 rows=118285 width=4) (actual time=0.086..8.423 rows=127835.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=300
+              ->  Parallel Index Only Scan using streams_2026_06_playlist_id_idx on streams_2026_06 s_18  (cost=0.42..2315.84 rows=114469 width=4) (actual time=0.088..9.769 rows=124170.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=293
+              ->  Parallel Index Only Scan using streams_2025_04_playlist_id_idx on streams_2025_04 s_4  (cost=0.42..2310.17 rows=114469 width=4) (actual time=0.071..3.241 rows=41171.67 loops=3)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=4 read=292
+              ->  Parallel Index Only Scan using streams_2026_04_playlist_id_idx on streams_2026_04 s_16  (cost=0.42..2310.08 rows=114469 width=4) (actual time=0.058..9.198 rows=123494.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=292
+              ->  Parallel Index Only Scan using streams_2025_11_playlist_id_idx on streams_2025_11 s_11  (cost=0.42..2308.90 rows=114469 width=4) (actual time=0.068..8.003 rows=123515.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=292
+              ->  Parallel Index Only Scan using streams_2025_09_playlist_id_idx on streams_2025_09 s_9  (cost=0.42..2304.79 rows=114469 width=4) (actual time=0.071..8.043 rows=123082.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=292
+              ->  Parallel Index Only Scan using streams_2025_06_playlist_id_idx on streams_2025_06 s_6  (cost=0.42..2303.28 rows=114469 width=4) (actual time=0.094..9.280 rows=123385.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=292
+              ->  Parallel Index Only Scan using streams_2026_02_playlist_id_idx on streams_2026_02 s_14  (cost=0.29..2165.27 rows=106838 width=4) (actual time=0.076..9.214 rows=115195.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=275
+              ->  Parallel Index Only Scan using streams_2025_02_playlist_id_idx on streams_2025_02 s_2  (cost=0.29..2162.85 rows=106838 width=4) (actual time=0.062..9.013 rows=114974.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=274
+        ->  Parallel Hash  (cost=2795.47..2795.47 rows=74078 width=24) (actual time=14.694..14.695 rows=42051.00 loops=3)
+              Buckets: 131072  Batches: 1  Memory Usage: 8352kB
+              Buffers: shared read=1619
+              ->  Parallel Seq Scan on playlists p  (cost=0.00..2795.47 rows=74078 width=24) (actual time=0.064..7.634 rows=42051.00 loops=3)
+                    Filter: is_public
+                    Rows Removed by Filter: 24616
+                    Buffers: shared read=1619
+Planning:
+  Buffers: shared hit=2578 read=8 dirtied=2
+Planning Time: 7.046 ms
+Execution Time: 219.959 ms
+=== R13 run 2 ===
+Gather  (cost=4721.45..80560.23 rows=62054 width=24) (actual time=175.043..182.990 rows=37933.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=3377 read=3583
+  ->  Parallel Hash Right Anti Join  (cost=3721.45..73354.83 rows=25856 width=24) (actual time=171.862..173.592 rows=12644.33 loops=3)
+        Hash Cond: (s.playlist_id = p.playlist_id)
+        Buffers: shared hit=3377 read=3583
+        ->  Parallel Append  (cost=0.00..52408.13 rows=2083338 width=4) (actual time=0.158..94.548 rows=749471.00 loops=3)
+              Buffers: shared hit=3377 read=1964
+              ->  Seq Scan on streams_2026_07 s_19  (cost=0.00..0.00 rows=1 width=4) (actual time=0.070..0.071 rows=0.00 loops=1)
+              ->  Seq Scan on streams_other s_20  (cost=0.00..0.00 rows=1 width=4) (actual time=0.041..0.041 rows=0.00 loops=1)
+              ->  Parallel Index Only Scan using streams_2025_12_playlist_id_idx on streams_2025_12 s_12  (cost=0.42..2397.06 rows=118284 width=4) (actual time=0.088..9.468 rows=128255.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=302
+              ->  Parallel Index Only Scan using streams_2026_03_playlist_id_idx on streams_2026_03 s_15  (cost=0.42..2388.64 rows=118285 width=4) (actual time=0.155..9.126 rows=127587.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=301
+              ->  Parallel Index Only Scan using streams_2025_08_playlist_id_idx on streams_2025_08 s_8  (cost=0.42..2385.86 rows=118285 width=4) (actual time=0.080..8.461 rows=127646.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=300
+              ->  Parallel Index Only Scan using streams_2026_05_playlist_id_idx on streams_2026_05 s_17  (cost=0.42..2384.83 rows=118285 width=4) (actual time=0.112..8.737 rows=127857.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=301
+              ->  Parallel Index Only Scan using streams_2025_05_playlist_id_idx on streams_2025_05 s_5  (cost=0.42..2381.16 rows=118284 width=4) (actual time=0.079..8.070 rows=127548.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=231 read=71
+              ->  Parallel Index Only Scan using streams_2025_01_playlist_id_idx on streams_2025_01 s_1  (cost=0.42..2381.09 rows=118285 width=4) (actual time=0.090..7.821 rows=127796.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=232 read=71
+              ->  Parallel Index Only Scan using streams_2025_03_playlist_id_idx on streams_2025_03 s_3  (cost=0.42..2377.78 rows=118284 width=4) (actual time=0.040..7.779 rows=127361.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=302
+              ->  Parallel Index Only Scan using streams_2025_07_playlist_id_idx on streams_2025_07 s_7  (cost=0.42..2373.81 rows=118284 width=4) (actual time=0.050..7.508 rows=127644.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=303
+              ->  Parallel Index Only Scan using streams_2025_10_playlist_id_idx on streams_2025_10 s_10  (cost=0.42..2370.76 rows=118285 width=4) (actual time=0.040..7.813 rows=127554.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=302
+              ->  Parallel Index Only Scan using streams_2026_01_playlist_id_idx on streams_2026_01 s_13  (cost=0.42..2369.28 rows=118285 width=4) (actual time=0.042..7.548 rows=127835.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=302
+              ->  Parallel Index Only Scan using streams_2026_06_playlist_id_idx on streams_2026_06 s_18  (cost=0.42..2315.84 rows=114469 width=4) (actual time=0.047..2.457 rows=41390.00 loops=3)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=297
+              ->  Parallel Index Only Scan using streams_2025_04_playlist_id_idx on streams_2025_04 s_4  (cost=0.42..2310.17 rows=114469 width=4) (actual time=0.058..3.758 rows=61757.50 loops=2)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=295
+              ->  Parallel Index Only Scan using streams_2026_04_playlist_id_idx on streams_2026_04 s_16  (cost=0.42..2310.08 rows=114469 width=4) (actual time=0.050..7.369 rows=123494.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=293
+              ->  Parallel Index Only Scan using streams_2025_11_playlist_id_idx on streams_2025_11 s_11  (cost=0.42..2308.90 rows=114469 width=4) (actual time=0.039..7.511 rows=123515.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=293
+              ->  Parallel Index Only Scan using streams_2025_09_playlist_id_idx on streams_2025_09 s_9  (cost=0.42..2304.79 rows=114469 width=4) (actual time=0.049..7.312 rows=123082.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=293
+              ->  Parallel Index Only Scan using streams_2025_06_playlist_id_idx on streams_2025_06 s_6  (cost=0.42..2303.28 rows=114469 width=4) (actual time=0.065..7.548 rows=123385.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=224 read=69
+              ->  Parallel Index Only Scan using streams_2026_02_playlist_id_idx on streams_2026_02 s_14  (cost=0.29..2165.27 rows=106838 width=4) (actual time=0.062..8.202 rows=115195.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=275
+              ->  Parallel Index Only Scan using streams_2025_02_playlist_id_idx on streams_2025_02 s_2  (cost=0.29..2162.85 rows=106838 width=4) (actual time=0.117..7.884 rows=114974.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=274
+        ->  Parallel Hash  (cost=2795.47..2795.47 rows=74078 width=24) (actual time=12.892..12.892 rows=42051.00 loops=3)
+              Buckets: 131072  Batches: 1  Memory Usage: 8352kB
+              Buffers: shared read=1619
+              ->  Parallel Seq Scan on playlists p  (cost=0.00..2795.47 rows=74078 width=24) (actual time=0.063..7.161 rows=42051.00 loops=3)
+                    Filter: is_public
+                    Rows Removed by Filter: 24616
+                    Buffers: shared read=1619
+Planning:
+  Buffers: shared hit=2578 read=8
+Planning Time: 6.267 ms
+Execution Time: 184.524 ms
+=== R13 run 3 ===
+Gather  (cost=4721.45..80560.23 rows=62054 width=24) (actual time=168.658..176.415 rows=37933.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=6960
+  ->  Parallel Hash Right Anti Join  (cost=3721.45..73354.83 rows=25856 width=24) (actual time=166.047..167.719 rows=12644.33 loops=3)
+        Hash Cond: (s.playlist_id = p.playlist_id)
+        Buffers: shared hit=6960
+        ->  Parallel Append  (cost=0.00..52408.13 rows=2083338 width=4) (actual time=0.067..91.549 rows=749471.00 loops=3)
+              Buffers: shared hit=5341
+              ->  Seq Scan on streams_2026_07 s_19  (cost=0.00..0.00 rows=1 width=4) (actual time=0.036..0.036 rows=0.00 loops=1)
+              ->  Seq Scan on streams_other s_20  (cost=0.00..0.00 rows=1 width=4) (actual time=0.034..0.034 rows=0.00 loops=1)
+              ->  Parallel Index Only Scan using streams_2025_12_playlist_id_idx on streams_2025_12 s_12  (cost=0.42..2397.06 rows=118284 width=4) (actual time=0.041..7.769 rows=128255.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=304
+              ->  Parallel Index Only Scan using streams_2026_03_playlist_id_idx on streams_2026_03 s_15  (cost=0.42..2388.64 rows=118285 width=4) (actual time=0.041..7.658 rows=127587.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=303
+              ->  Parallel Index Only Scan using streams_2025_08_playlist_id_idx on streams_2025_08 s_8  (cost=0.42..2385.86 rows=118285 width=4) (actual time=0.053..7.545 rows=127646.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=302
+              ->  Parallel Index Only Scan using streams_2026_05_playlist_id_idx on streams_2026_05 s_17  (cost=0.42..2384.83 rows=118285 width=4) (actual time=0.047..7.634 rows=127857.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=303
+              ->  Parallel Index Only Scan using streams_2025_05_playlist_id_idx on streams_2025_05 s_5  (cost=0.42..2381.16 rows=118284 width=4) (actual time=0.049..7.528 rows=127548.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=302
+              ->  Parallel Index Only Scan using streams_2025_01_playlist_id_idx on streams_2025_01 s_1  (cost=0.42..2381.09 rows=118285 width=4) (actual time=0.043..7.476 rows=127796.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=303
+              ->  Parallel Index Only Scan using streams_2025_03_playlist_id_idx on streams_2025_03 s_3  (cost=0.42..2377.78 rows=118284 width=4) (actual time=0.052..7.597 rows=127361.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=302
+              ->  Parallel Index Only Scan using streams_2025_07_playlist_id_idx on streams_2025_07 s_7  (cost=0.42..2373.81 rows=118284 width=4) (actual time=0.042..7.479 rows=127644.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=303
+              ->  Parallel Index Only Scan using streams_2025_10_playlist_id_idx on streams_2025_10 s_10  (cost=0.42..2370.76 rows=118285 width=4) (actual time=0.047..7.674 rows=127554.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=302
+              ->  Parallel Index Only Scan using streams_2026_01_playlist_id_idx on streams_2026_01 s_13  (cost=0.42..2369.28 rows=118285 width=4) (actual time=0.042..7.520 rows=127835.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=302
+              ->  Parallel Index Only Scan using streams_2026_06_playlist_id_idx on streams_2026_06 s_18  (cost=0.42..2315.84 rows=114469 width=4) (actual time=0.043..2.481 rows=41390.00 loops=3)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=297
+              ->  Parallel Index Only Scan using streams_2025_04_playlist_id_idx on streams_2025_04 s_4  (cost=0.42..2310.17 rows=114469 width=4) (actual time=0.052..3.754 rows=61757.50 loops=2)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=295
+              ->  Parallel Index Only Scan using streams_2026_04_playlist_id_idx on streams_2026_04 s_16  (cost=0.42..2310.08 rows=114469 width=4) (actual time=0.060..7.436 rows=123494.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=293
+              ->  Parallel Index Only Scan using streams_2025_11_playlist_id_idx on streams_2025_11 s_11  (cost=0.42..2308.90 rows=114469 width=4) (actual time=0.045..7.399 rows=123515.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=293
+              ->  Parallel Index Only Scan using streams_2025_09_playlist_id_idx on streams_2025_09 s_9  (cost=0.42..2304.79 rows=114469 width=4) (actual time=0.072..7.284 rows=123082.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=293
+              ->  Parallel Index Only Scan using streams_2025_06_playlist_id_idx on streams_2025_06 s_6  (cost=0.42..2303.28 rows=114469 width=4) (actual time=0.079..7.299 rows=123385.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=293
+              ->  Parallel Index Only Scan using streams_2026_02_playlist_id_idx on streams_2026_02 s_14  (cost=0.29..2165.27 rows=106838 width=4) (actual time=0.064..6.915 rows=115195.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=276
+              ->  Parallel Index Only Scan using streams_2025_02_playlist_id_idx on streams_2025_02 s_2  (cost=0.29..2162.85 rows=106838 width=4) (actual time=0.046..6.875 rows=114974.00 loops=1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=275
+        ->  Parallel Hash  (cost=2795.47..2795.47 rows=74078 width=24) (actual time=11.057..11.058 rows=42051.00 loops=3)
+              Buckets: 131072  Batches: 1  Memory Usage: 8384kB
+              Buffers: shared hit=1619
+              ->  Parallel Seq Scan on playlists p  (cost=0.00..2795.47 rows=74078 width=24) (actual time=0.005..6.504 rows=42051.00 loops=3)
+                    Filter: is_public
+                    Rows Removed by Filter: 24616
+                    Buffers: shared hit=1619
+Planning:
+  Buffers: shared hit=2586
+Planning Time: 5.576 ms
+Execution Time: 177.930 ms

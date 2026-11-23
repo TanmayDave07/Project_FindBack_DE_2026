@@ -1,0 +1,27 @@
+=== R22 run 1 ===
+Index Only Scan using idx_playlist_duplicates_order on playlist_duplicates  (cost=0.29..1100.29 rows=36000 width=16) (actual time=0.225..3.631 rows=36000.00 loops=1)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared read=140
+Planning:
+  Buffers: shared hit=104 read=5
+Planning Time: 0.750 ms
+Execution Time: 4.871 ms
+=== R22 run 2 ===
+Index Only Scan using idx_playlist_duplicates_order on playlist_duplicates  (cost=0.29..1100.29 rows=36000 width=16) (actual time=0.050..2.686 rows=36000.00 loops=1)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=140
+Planning:
+  Buffers: shared hit=109
+Planning Time: 0.319 ms
+Execution Time: 3.969 ms
+=== R22 run 3 ===
+Index Only Scan using idx_playlist_duplicates_order on playlist_duplicates  (cost=0.29..1100.29 rows=36000 width=16) (actual time=0.067..3.502 rows=36000.00 loops=1)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=140
+Planning:
+  Buffers: shared hit=109
+Planning Time: 0.354 ms
+Execution Time: 5.032 ms

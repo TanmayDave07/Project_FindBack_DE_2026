@@ -1,0 +1,66 @@
+=== W05 run 1 ===
+Delete on playlist_tracks  (cost=9.30..143.40 rows=0 width=0) (actual time=0.425..0.426 rows=0.00 loops=1)
+  Buffers: shared hit=107 read=31 dirtied=30
+  InitPlan 1
+    ->  Index Scan using pk_tracks on tracks tracks_1  (cost=0.43..8.45 rows=1 width=4) (actual time=0.007..0.007 rows=1.00 loops=1)
+          Index Cond: (track_id = 1389)
+          Index Searches: 1
+          Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.86..134.95 rows=16 width=12) (actual time=0.093..0.306 rows=29.00 loops=1)
+        Buffers: shared hit=49 read=31
+        ->  Index Scan using uq_tracks_album_disc_track on tracks  (cost=0.43..22.59 rows=9 width=10) (actual time=0.075..0.077 rows=13.00 loops=1)
+              Index Cond: (album_id = (InitPlan 1).col1)
+              Index Searches: 1
+              Buffers: shared hit=6 read=2
+        ->  Index Scan using idx_playlist_tracks_track on playlist_tracks  (cost=0.43..12.46 rows=2 width=10) (actual time=0.008..0.016 rows=2.23 loops=13)
+              Index Cond: (track_id = tracks.track_id)
+              Index Searches: 13
+              Buffers: shared hit=43 read=29
+Planning:
+  Buffers: shared hit=289 read=6
+Planning Time: 1.053 ms
+Execution Time: 0.529 ms
+=== W05 run 2 ===
+Delete on playlist_tracks  (cost=9.30..143.40 rows=0 width=0) (actual time=0.200..0.200 rows=0.00 loops=1)
+  Buffers: shared hit=105
+  InitPlan 1
+    ->  Index Scan using pk_tracks on tracks tracks_1  (cost=0.43..8.45 rows=1 width=4) (actual time=0.008..0.008 rows=1.00 loops=1)
+          Index Cond: (track_id = 1389)
+          Index Searches: 1
+          Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.86..134.95 rows=16 width=12) (actual time=0.042..0.173 rows=29.00 loops=1)
+        Buffers: shared hit=76
+        ->  Index Scan using uq_tracks_album_disc_track on tracks  (cost=0.43..22.59 rows=9 width=10) (actual time=0.025..0.028 rows=13.00 loops=1)
+              Index Cond: (album_id = (InitPlan 1).col1)
+              Index Searches: 1
+              Buffers: shared hit=8
+        ->  Index Scan using idx_playlist_tracks_track on playlist_tracks  (cost=0.43..12.46 rows=2 width=10) (actual time=0.006..0.011 rows=2.23 loops=13)
+              Index Cond: (track_id = tracks.track_id)
+              Index Searches: 13
+              Buffers: shared hit=68
+Planning:
+  Buffers: shared hit=295
+Planning Time: 0.904 ms
+Execution Time: 0.299 ms
+=== W05 run 3 ===
+Delete on playlist_tracks  (cost=9.30..143.40 rows=0 width=0) (actual time=0.196..0.197 rows=0.00 loops=1)
+  Buffers: shared hit=105
+  InitPlan 1
+    ->  Index Scan using pk_tracks on tracks tracks_1  (cost=0.43..8.45 rows=1 width=4) (actual time=0.006..0.007 rows=1.00 loops=1)
+          Index Cond: (track_id = 1389)
+          Index Searches: 1
+          Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.86..134.95 rows=16 width=12) (actual time=0.041..0.173 rows=29.00 loops=1)
+        Buffers: shared hit=76
+        ->  Index Scan using uq_tracks_album_disc_track on tracks  (cost=0.43..22.59 rows=9 width=10) (actual time=0.025..0.027 rows=13.00 loops=1)
+              Index Cond: (album_id = (InitPlan 1).col1)
+              Index Searches: 1
+              Buffers: shared hit=8
+        ->  Index Scan using idx_playlist_tracks_track on playlist_tracks  (cost=0.43..12.46 rows=2 width=10) (actual time=0.006..0.011 rows=2.23 loops=13)
+              Index Cond: (track_id = tracks.track_id)
+              Index Searches: 13
+              Buffers: shared hit=68
+Planning:
+  Buffers: shared hit=295
+Planning Time: 0.896 ms
+Execution Time: 0.282 ms

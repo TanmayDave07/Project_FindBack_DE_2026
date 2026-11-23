@@ -1,0 +1,245 @@
+{
+  "environment": {
+    "captured_at": "2026-11-23T11:19:17.720427+05:30",
+    "database": "spotify_cp4_seed_storage",
+    "version": "PostgreSQL 18.6 (Homebrew) on aarch64-apple-darwin25.6.0, compiled by Apple clang version 21.0.0 (clang-2100.1.1.101), 64-bit",
+    "timezone": "Asia/Kolkata",
+    "shared_buffers": "128MB",
+    "work_mem": "4MB",
+    "max_parallel_workers_per_gather": "2",
+    "enable_partition_pruning": "on",
+    "database_bytes": 111974079
+  },
+  "host": {
+    "machine": "arm64",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O"
+  },
+  "tables": {
+    "artists": {
+      "rows": 3000,
+      "checksum": "667284693992775573"
+    },
+    "users": {
+      "rows": 30000,
+      "checksum": "3778491270020233163"
+    },
+    "albums": {
+      "rows": 12000,
+      "checksum": "558507217134659976"
+    },
+    "playlists": {
+      "rows": 10000,
+      "checksum": "-1961143718456866483"
+    },
+    "tracks": {
+      "rows": 67808,
+      "checksum": "2160202954925399532"
+    },
+    "track_artists": {
+      "rows": 77489,
+      "checksum": "1367427192486328081"
+    },
+    "playlist_tracks": {
+      "rows": 120004,
+      "checksum": "4472874978928511668"
+    },
+    "liked_tracks": {
+      "rows": 58533,
+      "checksum": "5809343728756058907"
+    },
+    "artist_follows": {
+      "rows": 69901,
+      "checksum": "-7030064973245315825"
+    },
+    "streams": {
+      "rows": 250000,
+      "checksum": "5723662731763157926"
+    }
+  },
+  "relations": [
+    {
+      "name": "albums",
+      "relkind": "r",
+      "table_bytes": 1122304,
+      "index_bytes": 966656,
+      "total_bytes": 2088960
+    },
+    {
+      "name": "artist_follows",
+      "relkind": "r",
+      "table_bytes": 3129344,
+      "index_bytes": 1589248,
+      "total_bytes": 4718592
+    },
+    {
+      "name": "artists",
+      "relkind": "r",
+      "table_bytes": 270336,
+      "index_bytes": 90112,
+      "total_bytes": 360448
+    },
+    {
+      "name": "liked_tracks",
+      "relkind": "r",
+      "table_bytes": 2629632,
+      "index_bytes": 1327104,
+      "total_bytes": 3956736
+    },
+    {
+      "name": "playlist_tracks",
+      "relkind": "r",
+      "table_bytes": 6299648,
+      "index_bytes": 6496256,
+      "total_bytes": 12795904
+    },
+    {
+      "name": "playlists",
+      "relkind": "r",
+      "table_bytes": 696320,
+      "index_bytes": 245760,
+      "total_bytes": 942080
+    },
+    {
+      "name": "streams",
+      "relkind": "r",
+      "table_bytes": 21135360,
+      "index_bytes": 32423936,
+      "total_bytes": 53559296
+    },
+    {
+      "name": "track_artists",
+      "relkind": "r",
+      "table_bytes": 3547136,
+      "index_bytes": 3506176,
+      "total_bytes": 7053312
+    },
+    {
+      "name": "tracks",
+      "relkind": "r",
+      "table_bytes": 5480448,
+      "index_bytes": 6815744,
+      "total_bytes": 12296192
+    },
+    {
+      "name": "users",
+      "relkind": "r",
+      "table_bytes": 2867200,
+      "index_bytes": 2957312,
+      "total_bytes": 5824512
+    }
+  ],
+  "indexes": [
+    {
+      "name": "idx_albums_artist_release",
+      "table_name": "albums",
+      "bytes": 286720
+    },
+    {
+      "name": "idx_playlist_tracks_playlist_track",
+      "table_name": "playlist_tracks",
+      "bytes": 3801088
+    },
+    {
+      "name": "idx_streams_playlist",
+      "table_name": "streams",
+      "bytes": 950272
+    },
+    {
+      "name": "idx_streams_started_track",
+      "table_name": "streams",
+      "bytes": 10149888
+    },
+    {
+      "name": "idx_streams_track",
+      "table_name": "streams",
+      "bytes": 3268608
+    },
+    {
+      "name": "idx_streams_user_started",
+      "table_name": "streams",
+      "bytes": 12427264
+    },
+    {
+      "name": "idx_track_artists_artist_track",
+      "table_name": "track_artists",
+      "bytes": 1753088
+    },
+    {
+      "name": "pk_albums",
+      "table_name": "albums",
+      "bytes": 286720
+    },
+    {
+      "name": "pk_artist_follows",
+      "table_name": "artist_follows",
+      "bytes": 1589248
+    },
+    {
+      "name": "pk_artists",
+      "table_name": "artists",
+      "bytes": 90112
+    },
+    {
+      "name": "pk_liked_tracks",
+      "table_name": "liked_tracks",
+      "bytes": 1327104
+    },
+    {
+      "name": "pk_playlist_tracks",
+      "table_name": "playlist_tracks",
+      "bytes": 2695168
+    },
+    {
+      "name": "pk_playlists",
+      "table_name": "playlists",
+      "bytes": 245760
+    },
+    {
+      "name": "pk_streams",
+      "table_name": "streams",
+      "bytes": 5627904
+    },
+    {
+      "name": "pk_track_artists",
+      "table_name": "track_artists",
+      "bytes": 1753088
+    },
+    {
+      "name": "pk_tracks",
+      "table_name": "tracks",
+      "bytes": 1540096
+    },
+    {
+      "name": "pk_users",
+      "table_name": "users",
+      "bytes": 688128
+    },
+    {
+      "name": "uq_albums_upc",
+      "table_name": "albums",
+      "bytes": 393216
+    },
+    {
+      "name": "uq_tracks_album_disc_track",
+      "table_name": "tracks",
+      "bytes": 1540096
+    },
+    {
+      "name": "uq_tracks_isrc",
+      "table_name": "tracks",
+      "bytes": 3735552
+    },
+    {
+      "name": "uq_users_email",
+      "table_name": "users",
+      "bytes": 2269184
+    }
+  ],
+  "integrity": {
+    "streams_longer_than_track": 0,
+    "tracks_without_exactly_one_primary_artist": 0,
+    "streams_before_album_release": 0,
+    "stream_min": "2025-01-01T00:00:00+05:30",
+    "stream_max": "2026-06-30T23:56:51+05:30"
+  }
+}

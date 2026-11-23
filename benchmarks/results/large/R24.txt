@@ -1,0 +1,114 @@
+=== R24 run 1 ===
+Sort  (cost=33078.43..33078.44 rows=4 width=78) (actual time=176.384..177.519 rows=4.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=19 read=16076
+  ->  Finalize GroupAggregate  (cost=33077.01..33078.39 rows=4 width=78) (actual time=176.365..177.506 rows=4.00 loops=1)
+        Group Key: a.album_type
+        Buffers: shared hit=16 read=16076
+        ->  Gather Merge  (cost=33077.01..33078.17 rows=10 width=54) (actual time=176.339..177.478 rows=12.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=16 read=16076
+              ->  Sort  (cost=32076.99..32077.00 rows=4 width=54) (actual time=173.137..173.138 rows=4.00 loops=3)
+                    Sort Key: a.album_type
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=16 read=16076
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=32076.91..32076.95 rows=4 width=54) (actual time=173.113..173.114 rows=4.00 loops=3)
+                          Group Key: a.album_type
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared read=16076
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Hash Join  (cost=5860.46..26408.66 rows=566825 width=11) (actual time=17.933..119.860 rows=453460.33 loops=3)
+                                Hash Cond: (t.album_id = a.album_id)
+                                Buffers: shared read=16076
+                                ->  Parallel Seq Scan on tracks t  (cost=0.00..19060.25 rows=566825 width=9) (actual time=0.072..20.925 rows=453460.33 loops=3)
+                                      Buffers: shared read=13392
+                                ->  Parallel Hash  (cost=4095.76..4095.76 rows=141176 width=10) (actual time=17.738..17.738 rows=80000.00 loops=3)
+                                      Buckets: 262144  Batches: 1  Memory Usage: 12992kB
+                                      Buffers: shared read=2684
+                                      ->  Parallel Seq Scan on albums a  (cost=0.00..4095.76 rows=141176 width=10) (actual time=0.070..8.396 rows=80000.00 loops=3)
+                                            Buffers: shared read=2684
+Planning:
+  Buffers: shared hit=327 read=7
+Planning Time: 1.000 ms
+Execution Time: 177.603 ms
+=== R24 run 2 ===
+Sort  (cost=33078.43..33078.44 rows=4 width=78) (actual time=171.307..172.694 rows=4.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=2985 read=13110
+  ->  Finalize GroupAggregate  (cost=33077.01..33078.39 rows=4 width=78) (actual time=171.290..172.682 rows=4.00 loops=1)
+        Group Key: a.album_type
+        Buffers: shared hit=2982 read=13110
+        ->  Gather Merge  (cost=33077.01..33078.17 rows=10 width=54) (actual time=171.274..172.664 rows=12.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=2982 read=13110
+              ->  Sort  (cost=32076.99..32077.00 rows=4 width=54) (actual time=169.129..169.132 rows=4.00 loops=3)
+                    Sort Key: a.album_type
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=2982 read=13110
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=32076.91..32076.95 rows=4 width=54) (actual time=169.102..169.104 rows=4.00 loops=3)
+                          Group Key: a.album_type
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=2966 read=13110
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Hash Join  (cost=5860.46..26408.66 rows=566825 width=11) (actual time=15.594..115.634 rows=453460.33 loops=3)
+                                Hash Cond: (t.album_id = a.album_id)
+                                Buffers: shared hit=2966 read=13110
+                                ->  Parallel Seq Scan on tracks t  (cost=0.00..19060.25 rows=566825 width=9) (actual time=0.076..20.718 rows=453460.33 loops=3)
+                                      Buffers: shared hit=282 read=13110
+                                ->  Parallel Hash  (cost=4095.76..4095.76 rows=141176 width=10) (actual time=15.393..15.393 rows=80000.00 loops=3)
+                                      Buckets: 262144  Batches: 1  Memory Usage: 12992kB
+                                      Buffers: shared hit=2684
+                                      ->  Parallel Seq Scan on albums a  (cost=0.00..4095.76 rows=141176 width=10) (actual time=0.003..7.189 rows=80000.00 loops=3)
+                                            Buffers: shared hit=2684
+Planning:
+  Buffers: shared hit=334
+Planning Time: 0.742 ms
+Execution Time: 172.767 ms
+=== R24 run 3 ===
+Sort  (cost=33078.43..33078.44 rows=4 width=78) (actual time=176.489..177.934 rows=4.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3267 read=12828
+  ->  Finalize GroupAggregate  (cost=33077.01..33078.39 rows=4 width=78) (actual time=176.471..177.923 rows=4.00 loops=1)
+        Group Key: a.album_type
+        Buffers: shared hit=3264 read=12828
+        ->  Gather Merge  (cost=33077.01..33078.17 rows=10 width=54) (actual time=176.452..177.901 rows=12.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=3264 read=12828
+              ->  Sort  (cost=32076.99..32077.00 rows=4 width=54) (actual time=174.321..174.322 rows=4.00 loops=3)
+                    Sort Key: a.album_type
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=3264 read=12828
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=32076.91..32076.95 rows=4 width=54) (actual time=174.292..174.294 rows=4.00 loops=3)
+                          Group Key: a.album_type
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=3248 read=12828
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Hash Join  (cost=5860.46..26408.66 rows=566825 width=11) (actual time=17.274..119.597 rows=453460.33 loops=3)
+                                Hash Cond: (t.album_id = a.album_id)
+                                Buffers: shared hit=3248 read=12828
+                                ->  Parallel Seq Scan on tracks t  (cost=0.00..19060.25 rows=566825 width=9) (actual time=0.085..20.936 rows=453460.33 loops=3)
+                                      Buffers: shared hit=564 read=12828
+                                ->  Parallel Hash  (cost=4095.76..4095.76 rows=141176 width=10) (actual time=17.073..17.073 rows=80000.00 loops=3)
+                                      Buckets: 262144  Batches: 1  Memory Usage: 13024kB
+                                      Buffers: shared hit=2684
+                                      ->  Parallel Seq Scan on albums a  (cost=0.00..4095.76 rows=141176 width=10) (actual time=0.003..7.855 rows=80000.00 loops=3)
+                                            Buffers: shared hit=2684
+Planning:
+  Buffers: shared hit=334
+Planning Time: 0.725 ms
+Execution Time: 178.006 ms

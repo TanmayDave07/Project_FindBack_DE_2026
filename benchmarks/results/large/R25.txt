@@ -1,0 +1,327 @@
+=== R25 run 1 ===
+Limit  (cost=83730.51..83730.63 rows=50 width=31) (actual time=264.275..264.306 rows=50.00 loops=1)
+  Buffers: shared hit=613321 read=17886
+  ->  Sort  (cost=83730.51..83831.76 rows=40500 width=31) (actual time=264.274..264.302 rows=50.00 loops=1)
+        Sort Key: (count(s.stream_id)) DESC, a.release_date DESC
+        Sort Method: top-N heapsort  Memory: 31kB
+        Buffers: shared hit=613321 read=17886
+        ->  HashAggregate  (cost=81980.13..82385.13 rows=40500 width=31) (actual time=261.619..263.034 rows=11165.00 loops=1)
+              Group Key: t.track_id, a.release_date
+              Batches: 1  Memory Usage: 1817kB
+              Buffers: shared hit=613315 read=17886
+              ->  Gather  (cost=1000.85..81676.38 rows=40500 width=27) (actual time=1.504..255.898 rows=20312.00 loops=1)
+                    Workers Planned: 1
+                    Workers Launched: 1
+                    Buffers: shared hit=613315 read=17886
+                    ->  Nested Loop Left Join  (cost=0.85..76626.38 rows=23824 width=27) (actual time=0.768..253.859 rows=10156.00 loops=2)
+                          Buffers: shared hit=613315 read=17886
+                          ->  Nested Loop  (cost=0.43..22152.75 rows=6482 width=23) (actual time=0.085..71.822 rows=5582.50 loops=2)
+                                Buffers: shared hit=6839 read=3914
+                                ->  Parallel Seq Scan on albums a  (cost=0.00..4448.71 rows=1144 width=8) (actual time=0.011..10.254 rows=998.50 loops=2)
+                                      Filter: (release_date >= '2026-05-31'::date)
+                                      Rows Removed by Filter: 119002
+                                      Buffers: shared hit=2221 read=463
+                                ->  Index Scan using uq_tracks_album_disc_track on tracks t  (cost=0.43..15.39 rows=9 width=23) (actual time=0.060..0.061 rows=5.59 loops=1997)
+                                      Index Cond: (album_id = a.album_id)
+                                      Index Searches: 1997
+                                      Buffers: shared hit=4618 read=3451
+                          ->  Append  (cost=0.42..8.20 rows=20 width=8) (actual time=0.030..0.032 rows=1.58 loops=11165)
+                                Buffers: shared hit=606476 read=13972
+                                ->  Index Scan using streams_2025_01_track_id_idx on streams_2025_01 s_1  (cost=0.42..0.45 rows=1 width=8) (actual time=0.002..0.002 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32803 read=693
+                                ->  Index Scan using streams_2025_02_track_id_idx on streams_2025_02 s_2  (cost=0.42..0.45 rows=1 width=8) (actual time=0.002..0.002 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32853 read=643
+                                ->  Index Scan using streams_2025_03_track_id_idx on streams_2025_03 s_3  (cost=0.42..0.45 rows=1 width=8) (actual time=0.002..0.002 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32804 read=692
+                                ->  Index Scan using streams_2025_04_track_id_idx on streams_2025_04 s_4  (cost=0.42..0.45 rows=1 width=8) (actual time=0.002..0.002 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32823 read=673
+                                ->  Index Scan using streams_2025_05_track_id_idx on streams_2025_05 s_5  (cost=0.42..0.45 rows=1 width=8) (actual time=0.002..0.002 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32794 read=702
+                                ->  Index Scan using streams_2025_06_track_id_idx on streams_2025_06 s_6  (cost=0.42..0.45 rows=1 width=8) (actual time=0.002..0.002 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32818 read=678
+                                ->  Index Scan using streams_2025_07_track_id_idx on streams_2025_07 s_7  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32794 read=702
+                                ->  Index Scan using streams_2025_08_track_id_idx on streams_2025_08 s_8  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32797 read=699
+                                ->  Index Scan using streams_2025_09_track_id_idx on streams_2025_09 s_9  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32816 read=680
+                                ->  Index Scan using streams_2025_10_track_id_idx on streams_2025_10 s_10  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32797 read=699
+                                ->  Index Scan using streams_2025_11_track_id_idx on streams_2025_11 s_11  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32821 read=675
+                                ->  Index Scan using streams_2025_12_track_id_idx on streams_2025_12 s_12  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32799 read=697
+                                ->  Index Scan using streams_2026_01_track_id_idx on streams_2026_01 s_13  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32798 read=698
+                                ->  Index Scan using streams_2026_02_track_id_idx on streams_2026_02 s_14  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32851 read=645
+                                ->  Index Scan using streams_2026_03_track_id_idx on streams_2026_03 s_15  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32802 read=694
+                                ->  Index Scan using streams_2026_04_track_id_idx on streams_2026_04 s_16  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32817 read=679
+                                ->  Index Scan using streams_2026_05_track_id_idx on streams_2026_05 s_17  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.02 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=32897 read=812
+                                ->  Index Scan using streams_2026_06_track_id_idx on streams_2026_06 s_18  (cost=0.42..0.45 rows=1 width=8) (actual time=0.002..0.003 rows=1.56 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=48592 read=2211
+                                ->  Seq Scan on streams_2026_07 s_19  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0.00 loops=11165)
+                                      Filter: (track_id = t.track_id)
+                                ->  Seq Scan on streams_other s_20  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0.00 loops=11165)
+                                      Filter: (track_id = t.track_id)
+Planning:
+  Buffers: shared hit=2801 read=6
+Planning Time: 6.902 ms
+Execution Time: 264.555 ms
+=== R25 run 2 ===
+Limit  (cost=83730.51..83730.63 rows=50 width=31) (actual time=191.233..191.267 rows=50.00 loops=1)
+  Buffers: shared hit=618189 read=13018
+  ->  Sort  (cost=83730.51..83831.76 rows=40500 width=31) (actual time=191.232..191.263 rows=50.00 loops=1)
+        Sort Key: (count(s.stream_id)) DESC, a.release_date DESC
+        Sort Method: top-N heapsort  Memory: 31kB
+        Buffers: shared hit=618189 read=13018
+        ->  HashAggregate  (cost=81980.13..82385.13 rows=40500 width=31) (actual time=188.427..189.806 rows=11165.00 loops=1)
+              Group Key: t.track_id, a.release_date
+              Batches: 1  Memory Usage: 1817kB
+              Buffers: shared hit=618183 read=13018
+              ->  Gather  (cost=1000.85..81676.38 rows=40500 width=27) (actual time=0.506..182.307 rows=20312.00 loops=1)
+                    Workers Planned: 1
+                    Workers Launched: 1
+                    Buffers: shared hit=618183 read=13018
+                    ->  Nested Loop Left Join  (cost=0.85..76626.38 rows=23824 width=27) (actual time=0.270..181.470 rows=10156.00 loops=2)
+                          Buffers: shared hit=618183 read=13018
+                          ->  Nested Loop  (cost=0.43..22152.75 rows=6482 width=23) (actual time=0.083..20.594 rows=5582.50 loops=2)
+                                Buffers: shared hit=4625 read=6128
+                                ->  Parallel Seq Scan on albums a  (cost=0.00..4448.71 rows=1144 width=8) (actual time=0.047..10.186 rows=998.50 loops=2)
+                                      Filter: (release_date >= '2026-05-31'::date)
+                                      Rows Removed by Filter: 119002
+                                      Buffers: shared read=2684
+                                ->  Index Scan using uq_tracks_album_disc_track on tracks t  (cost=0.43..15.39 rows=9 width=23) (actual time=0.009..0.010 rows=5.59 loops=1997)
+                                      Index Cond: (album_id = a.album_id)
+                                      Index Searches: 1997
+                                      Buffers: shared hit=4625 read=3444
+                          ->  Append  (cost=0.42..8.20 rows=20 width=8) (actual time=0.026..0.028 rows=1.58 loops=11165)
+                                Buffers: shared hit=613558 read=6890
+                                ->  Index Scan using streams_2025_01_track_id_idx on streams_2025_01 s_1  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33172 read=324
+                                ->  Index Scan using streams_2025_02_track_id_idx on streams_2025_02 s_2  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33204 read=292
+                                ->  Index Scan using streams_2025_03_track_id_idx on streams_2025_03 s_3  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33170 read=326
+                                ->  Index Scan using streams_2025_04_track_id_idx on streams_2025_04 s_4  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33198 read=298
+                                ->  Index Scan using streams_2025_05_track_id_idx on streams_2025_05 s_5  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33169 read=327
+                                ->  Index Scan using streams_2025_06_track_id_idx on streams_2025_06 s_6  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33176 read=320
+                                ->  Index Scan using streams_2025_07_track_id_idx on streams_2025_07 s_7  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33165 read=331
+                                ->  Index Scan using streams_2025_08_track_id_idx on streams_2025_08 s_8  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33174 read=322
+                                ->  Index Scan using streams_2025_09_track_id_idx on streams_2025_09 s_9  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33181 read=315
+                                ->  Index Scan using streams_2025_10_track_id_idx on streams_2025_10 s_10  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33171 read=325
+                                ->  Index Scan using streams_2025_11_track_id_idx on streams_2025_11 s_11  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33190 read=306
+                                ->  Index Scan using streams_2025_12_track_id_idx on streams_2025_12 s_12  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33182 read=314
+                                ->  Index Scan using streams_2026_01_track_id_idx on streams_2026_01 s_13  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33170 read=326
+                                ->  Index Scan using streams_2026_02_track_id_idx on streams_2026_02 s_14  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33211 read=285
+                                ->  Index Scan using streams_2026_03_track_id_idx on streams_2026_03 s_15  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33178 read=318
+                                ->  Index Scan using streams_2026_04_track_id_idx on streams_2026_04 s_16  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33189 read=307
+                                ->  Index Scan using streams_2026_05_track_id_idx on streams_2026_05 s_17  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.02 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33297 read=412
+                                ->  Index Scan using streams_2026_06_track_id_idx on streams_2026_06 s_18  (cost=0.42..0.45 rows=1 width=8) (actual time=0.002..0.003 rows=1.56 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=49361 read=1442
+                                ->  Seq Scan on streams_2026_07 s_19  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0.00 loops=11165)
+                                      Filter: (track_id = t.track_id)
+                                ->  Seq Scan on streams_other s_20  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0.00 loops=11165)
+                                      Filter: (track_id = t.track_id)
+Planning:
+  Buffers: shared hit=2709 read=98
+Planning Time: 6.854 ms
+Execution Time: 191.494 ms
+=== R25 run 3 ===
+Limit  (cost=83730.51..83730.63 rows=50 width=31) (actual time=189.757..189.806 rows=50.00 loops=1)
+  Buffers: shared hit=615627 read=15580
+  ->  Sort  (cost=83730.51..83831.76 rows=40500 width=31) (actual time=189.756..189.802 rows=50.00 loops=1)
+        Sort Key: (count(s.stream_id)) DESC, a.release_date DESC
+        Sort Method: top-N heapsort  Memory: 31kB
+        Buffers: shared hit=615627 read=15580
+        ->  HashAggregate  (cost=81980.13..82385.13 rows=40500 width=31) (actual time=187.116..188.524 rows=11165.00 loops=1)
+              Group Key: t.track_id, a.release_date
+              Batches: 1  Memory Usage: 1817kB
+              Buffers: shared hit=615621 read=15580
+              ->  Gather  (cost=1000.85..81676.38 rows=40500 width=27) (actual time=0.559..181.733 rows=20312.00 loops=1)
+                    Workers Planned: 1
+                    Workers Launched: 1
+                    Buffers: shared hit=615621 read=15580
+                    ->  Nested Loop Left Join  (cost=0.85..76626.38 rows=23824 width=27) (actual time=0.307..179.231 rows=10156.00 loops=2)
+                          Buffers: shared hit=615621 read=15580
+                          ->  Nested Loop  (cost=0.43..22152.75 rows=6482 width=23) (actual time=0.097..19.763 rows=5582.50 loops=2)
+                                Buffers: shared hit=4629 read=6124
+                                ->  Parallel Seq Scan on albums a  (cost=0.00..4448.71 rows=1144 width=8) (actual time=0.049..9.780 rows=998.50 loops=2)
+                                      Filter: (release_date >= '2026-05-31'::date)
+                                      Rows Removed by Filter: 119002
+                                      Buffers: shared read=2684
+                                ->  Index Scan using uq_tracks_album_disc_track on tracks t  (cost=0.43..15.39 rows=9 width=23) (actual time=0.009..0.009 rows=5.59 loops=1997)
+                                      Index Cond: (album_id = a.album_id)
+                                      Index Searches: 1997
+                                      Buffers: shared hit=4629 read=3440
+                          ->  Append  (cost=0.42..8.20 rows=20 width=8) (actual time=0.026..0.028 rows=1.58 loops=11165)
+                                Buffers: shared hit=610992 read=9456
+                                ->  Index Scan using streams_2025_01_track_id_idx on streams_2025_01 s_1  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33036 read=460
+                                ->  Index Scan using streams_2025_02_track_id_idx on streams_2025_02 s_2  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33078 read=418
+                                ->  Index Scan using streams_2025_03_track_id_idx on streams_2025_03 s_3  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33030 read=466
+                                ->  Index Scan using streams_2025_04_track_id_idx on streams_2025_04 s_4  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33041 read=455
+                                ->  Index Scan using streams_2025_05_track_id_idx on streams_2025_05 s_5  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33020 read=476
+                                ->  Index Scan using streams_2025_06_track_id_idx on streams_2025_06 s_6  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33051 read=445
+                                ->  Index Scan using streams_2025_07_track_id_idx on streams_2025_07 s_7  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33025 read=471
+                                ->  Index Scan using streams_2025_08_track_id_idx on streams_2025_08 s_8  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33025 read=471
+                                ->  Index Scan using streams_2025_09_track_id_idx on streams_2025_09 s_9  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33040 read=456
+                                ->  Index Scan using streams_2025_10_track_id_idx on streams_2025_10 s_10  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33023 read=473
+                                ->  Index Scan using streams_2025_11_track_id_idx on streams_2025_11 s_11  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33047 read=449
+                                ->  Index Scan using streams_2025_12_track_id_idx on streams_2025_12 s_12  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33032 read=464
+                                ->  Index Scan using streams_2026_01_track_id_idx on streams_2026_01 s_13  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33022 read=474
+                                ->  Index Scan using streams_2026_02_track_id_idx on streams_2026_02 s_14  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33074 read=422
+                                ->  Index Scan using streams_2026_03_track_id_idx on streams_2026_03 s_15  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33030 read=466
+                                ->  Index Scan using streams_2026_04_track_id_idx on streams_2026_04 s_16  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.00 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33048 read=448
+                                ->  Index Scan using streams_2026_05_track_id_idx on streams_2026_05 s_17  (cost=0.42..0.45 rows=1 width=8) (actual time=0.001..0.001 rows=0.02 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=33150 read=559
+                                ->  Index Scan using streams_2026_06_track_id_idx on streams_2026_06 s_18  (cost=0.42..0.45 rows=1 width=8) (actual time=0.002..0.003 rows=1.56 loops=11165)
+                                      Index Cond: (track_id = t.track_id)
+                                      Index Searches: 11165
+                                      Buffers: shared hit=49220 read=1583
+                                ->  Seq Scan on streams_2026_07 s_19  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0.00 loops=11165)
+                                      Filter: (track_id = t.track_id)
+                                ->  Seq Scan on streams_other s_20  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0.00 loops=11165)
+                                      Filter: (track_id = t.track_id)
+Planning:
+  Buffers: shared hit=2568 read=239
+Planning Time: 7.591 ms
+Execution Time: 190.069 ms

@@ -1,0 +1,42 @@
+=== R21 run 1 ===
+Nested Loop  (cost=0.85..16.88 rows=1 width=45) (actual time=0.371..0.371 rows=0.00 loops=1)
+  Buffers: shared read=3
+  ->  Index Scan using uq_tracks_isrc on tracks t  (cost=0.43..8.45 rows=1 width=23) (actual time=0.371..0.371 rows=0.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::bpchar)
+        Index Searches: 1
+        Buffers: shared read=3
+  ->  Index Scan using pk_albums on albums a  (cost=0.42..8.44 rows=1 width=30) (never executed)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=286 read=21
+Planning Time: 3.140 ms
+Execution Time: 0.415 ms
+=== R21 run 2 ===
+Nested Loop  (cost=0.85..16.88 rows=1 width=45) (actual time=0.035..0.035 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Scan using uq_tracks_isrc on tracks t  (cost=0.43..8.45 rows=1 width=23) (actual time=0.034..0.034 rows=0.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::bpchar)
+        Index Searches: 1
+        Buffers: shared hit=3
+  ->  Index Scan using pk_albums on albums a  (cost=0.42..8.44 rows=1 width=30) (never executed)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=307
+Planning Time: 0.900 ms
+Execution Time: 0.075 ms
+=== R21 run 3 ===
+Nested Loop  (cost=0.85..16.88 rows=1 width=45) (actual time=0.035..0.036 rows=0.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Scan using uq_tracks_isrc on tracks t  (cost=0.43..8.45 rows=1 width=23) (actual time=0.035..0.035 rows=0.00 loops=1)
+        Index Cond: (isrc = 'INASA1301389'::bpchar)
+        Index Searches: 1
+        Buffers: shared hit=3
+  ->  Index Scan using pk_albums on albums a  (cost=0.42..8.44 rows=1 width=30) (never executed)
+        Index Cond: (album_id = t.album_id)
+        Index Searches: 0
+Planning:
+  Buffers: shared hit=307
+Planning Time: 0.788 ms
+Execution Time: 0.075 ms

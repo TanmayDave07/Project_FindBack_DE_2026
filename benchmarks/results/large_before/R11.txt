@@ -1,0 +1,78 @@
+=== R11 run 1 ===
+Sort  (cost=38.42..38.43 rows=2 width=50) (actual time=0.723..0.724 rows=3.00 loops=1)
+  Sort Key: a.release_date DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=24 read=16
+  ->  Nested Loop  (cost=1.14..38.41 rows=2 width=50) (actual time=0.525..0.710 rows=3.00 loops=1)
+        Buffers: shared hit=21 read=16
+        ->  Nested Loop  (cost=0.85..37.33 rows=2 width=39) (actual time=0.511..0.554 rows=3.00 loops=1)
+              Buffers: shared hit=16 read=12
+              ->  Index Only Scan using pk_artist_follows on artist_follows f  (cost=0.43..11.98 rows=3 width=4) (actual time=0.494..0.495 rows=7.00 loops=1)
+                    Index Cond: (user_id = 1038)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=3
+              ->  Index Scan using idx_albums_artist_release on albums a  (cost=0.42..8.44 rows=1 width=35) (actual time=0.007..0.008 rows=0.43 loops=7)
+                    Index Cond: ((artist_id = f.artist_id) AND (release_date >= '2026-01-01'::date))
+                    Index Searches: 7
+                    Buffers: shared hit=15 read=9
+        ->  Index Scan using pk_artists on artists ar  (cost=0.29..0.54 rows=1 width=23) (actual time=0.051..0.051 rows=1.00 loops=3)
+              Index Cond: (artist_id = a.artist_id)
+              Index Searches: 3
+              Buffers: shared hit=5 read=4
+Planning:
+  Buffers: shared hit=308 read=9
+Planning Time: 1.472 ms
+Execution Time: 0.769 ms
+=== R11 run 2 ===
+Sort  (cost=38.42..38.43 rows=2 width=50) (actual time=0.109..0.109 rows=3.00 loops=1)
+  Sort Key: a.release_date DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=40
+  ->  Nested Loop  (cost=1.14..38.41 rows=2 width=50) (actual time=0.064..0.096 rows=3.00 loops=1)
+        Buffers: shared hit=37
+        ->  Nested Loop  (cost=0.85..37.33 rows=2 width=39) (actual time=0.056..0.083 rows=3.00 loops=1)
+              Buffers: shared hit=28
+              ->  Index Only Scan using pk_artist_follows on artist_follows f  (cost=0.43..11.98 rows=3 width=4) (actual time=0.033..0.033 rows=7.00 loops=1)
+                    Index Cond: (user_id = 1038)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=4
+              ->  Index Scan using idx_albums_artist_release on albums a  (cost=0.42..8.44 rows=1 width=35) (actual time=0.006..0.007 rows=0.43 loops=7)
+                    Index Cond: ((artist_id = f.artist_id) AND (release_date >= '2026-01-01'::date))
+                    Index Searches: 7
+                    Buffers: shared hit=24
+        ->  Index Scan using pk_artists on artists ar  (cost=0.29..0.54 rows=1 width=23) (actual time=0.004..0.004 rows=1.00 loops=3)
+              Index Cond: (artist_id = a.artist_id)
+              Index Searches: 3
+              Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=317
+Planning Time: 0.865 ms
+Execution Time: 0.155 ms
+=== R11 run 3 ===
+Sort  (cost=38.42..38.43 rows=2 width=50) (actual time=0.091..0.092 rows=3.00 loops=1)
+  Sort Key: a.release_date DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=40
+  ->  Nested Loop  (cost=1.14..38.41 rows=2 width=50) (actual time=0.050..0.080 rows=3.00 loops=1)
+        Buffers: shared hit=37
+        ->  Nested Loop  (cost=0.85..37.33 rows=2 width=39) (actual time=0.042..0.067 rows=3.00 loops=1)
+              Buffers: shared hit=28
+              ->  Index Only Scan using pk_artist_follows on artist_follows f  (cost=0.43..11.98 rows=3 width=4) (actual time=0.032..0.033 rows=7.00 loops=1)
+                    Index Cond: (user_id = 1038)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=4
+              ->  Index Scan using idx_albums_artist_release on albums a  (cost=0.42..8.44 rows=1 width=35) (actual time=0.004..0.004 rows=0.43 loops=7)
+                    Index Cond: ((artist_id = f.artist_id) AND (release_date >= '2026-01-01'::date))
+                    Index Searches: 7
+                    Buffers: shared hit=24
+        ->  Index Scan using pk_artists on artists ar  (cost=0.29..0.54 rows=1 width=23) (actual time=0.004..0.004 rows=1.00 loops=3)
+              Index Cond: (artist_id = a.artist_id)
+              Index Searches: 3
+              Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=317
+Planning Time: 0.822 ms
+Execution Time: 0.133 ms

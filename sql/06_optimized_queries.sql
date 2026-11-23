@@ -234,10 +234,10 @@ WHERE t.isrc = 'INASA1301389';
 
 -- @R22
 -- Playlist hygiene: playlists that contain the same track more than once
-SELECT playlist_id, track_id, count(*) AS copies
-FROM playlist_tracks
-GROUP BY playlist_id, track_id
-HAVING count(*) > 1
+-- CP4: exact snapshot from the in-database materialized report in 09_scalability_tuning.sql.
+-- Refresh after committed playlist changes; see the scalability report for freshness.
+SELECT playlist_id, track_id, copies
+FROM spotify.playlist_duplicates
 ORDER BY copies DESC, playlist_id;
 
 -- @R23

@@ -1,0 +1,57 @@
+=== R06 run 1 ===
+Sort  (cost=37.34..37.35 rows=3 width=27) (actual time=0.820..0.820 rows=3.00 loops=1)
+  Sort Key: l.liked_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=16 read=5 dirtied=1
+  ->  Nested Loop  (cost=0.85..37.32 rows=3 width=27) (actual time=0.773..0.808 rows=3.00 loops=1)
+        Buffers: shared hit=13 read=5 dirtied=1
+        ->  Index Scan using pk_liked_tracks on liked_tracks l  (cost=0.43..11.98 rows=3 width=12) (actual time=0.757..0.769 rows=3.00 loops=1)
+              Index Cond: (user_id = 1038)
+              Index Searches: 1
+              Buffers: shared hit=1 read=5 dirtied=1
+        ->  Index Scan using pk_tracks on tracks t  (cost=0.43..8.45 rows=1 width=19) (actual time=0.012..0.012 rows=1.00 loops=3)
+              Index Cond: (track_id = l.track_id)
+              Index Searches: 3
+              Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=258 read=2
+Planning Time: 0.749 ms
+Execution Time: 0.863 ms
+=== R06 run 2 ===
+Sort  (cost=37.34..37.35 rows=3 width=27) (actual time=0.120..0.120 rows=3.00 loops=1)
+  Sort Key: l.liked_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=19
+  ->  Nested Loop  (cost=0.85..37.32 rows=3 width=27) (actual time=0.053..0.097 rows=3.00 loops=1)
+        Buffers: shared hit=16
+        ->  Index Scan using pk_liked_tracks on liked_tracks l  (cost=0.43..11.98 rows=3 width=12) (actual time=0.023..0.024 rows=3.00 loops=1)
+              Index Cond: (user_id = 1038)
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using pk_tracks on tracks t  (cost=0.43..8.45 rows=1 width=19) (actual time=0.023..0.023 rows=1.00 loops=3)
+              Index Cond: (track_id = l.track_id)
+              Index Searches: 3
+              Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=260
+Planning Time: 1.270 ms
+Execution Time: 0.192 ms
+=== R06 run 3 ===
+Sort  (cost=37.34..37.35 rows=3 width=27) (actual time=0.119..0.120 rows=3.00 loops=1)
+  Sort Key: l.liked_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=19
+  ->  Nested Loop  (cost=0.85..37.32 rows=3 width=27) (actual time=0.053..0.098 rows=3.00 loops=1)
+        Buffers: shared hit=16
+        ->  Index Scan using pk_liked_tracks on liked_tracks l  (cost=0.43..11.98 rows=3 width=12) (actual time=0.023..0.024 rows=3.00 loops=1)
+              Index Cond: (user_id = 1038)
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using pk_tracks on tracks t  (cost=0.43..8.45 rows=1 width=19) (actual time=0.023..0.023 rows=1.00 loops=3)
+              Index Cond: (track_id = l.track_id)
+              Index Searches: 3
+              Buffers: shared hit=12
+Planning:
+  Buffers: shared hit=260
+Planning Time: 1.122 ms
+Execution Time: 0.189 ms

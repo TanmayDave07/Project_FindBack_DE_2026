@@ -47,3 +47,9 @@ ON spotify.streams (track_id);
 -- Find albums by artist and release date.
 CREATE INDEX idx_albums_artist_release
 ON spotify.albums (artist_id, release_date DESC);
+
+-- CP4 W05: at 2.4 million playlist entries, an album takedown must not scan
+-- every playlist. The existing (playlist_id, track_id) index cannot seek
+-- by track_id alone; put track_id first for this DELETE's equality lookup.
+CREATE INDEX idx_playlist_tracks_track
+ON spotify.playlist_tracks (track_id);

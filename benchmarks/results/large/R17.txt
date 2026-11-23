@@ -1,0 +1,132 @@
+=== R17 run 1 ===
+Sort  (cost=26996.98..27020.91 rows=9572 width=12) (actual time=127.653..127.953 rows=324.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 35kB
+  Buffers: shared hit=2809 read=7005
+  ->  Finalize HashAggregate  (cost=26005.09..26364.05 rows=9572 width=12) (actual time=121.274..127.895 rows=324.00 loops=1)
+        Group Key: s.user_id
+        Filter: (count(*) >= 4)
+        Batches: 1  Memory Usage: 5913kB
+        Rows Removed by Filter: 97816
+        Buffers: shared hit=2806 read=7005
+        ->  Gather  (cost=18481.22..25660.49 rows=68921 width=12) (actual time=90.956..101.012 rows=113434.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=2806 read=7005
+              ->  Partial HashAggregate  (cost=17481.22..17768.39 rows=28717 width=12) (actual time=88.374..92.556 rows=37811.33 loops=3)
+                    Group Key: s.user_id
+                    Batches: 1  Memory Usage: 2585kB
+                    Buffers: shared hit=2806 read=7005
+                    Worker 0:  Batches: 1  Memory Usage: 2585kB
+                    Worker 1:  Batches: 1  Memory Usage: 2585kB
+                    ->  Parallel Hash Join  (cost=11526.56..17225.44 rows=51156 width=4) (actual time=37.506..79.037 rows=40712.67 loops=3)
+                          Hash Cond: (s.user_id = u.user_id)
+                          Buffers: shared hit=2806 read=7005
+                          ->  Parallel Append  (cost=0.00..5398.39 rows=114471 width=4) (actual time=0.108..15.481 rows=91575.00 loops=3)
+                                Buffers: shared hit=2806
+                                ->  Seq Scan on streams_2026_07 s_2  (cost=0.00..0.00 rows=1 width=4) (actual time=0.138..0.138 rows=0.00 loops=1)
+                                      Filter: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                                ->  Seq Scan on streams_other s_3  (cost=0.00..0.00 rows=1 width=4) (actual time=0.123..0.123 rows=0.00 loops=1)
+                                      Filter: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                                ->  Parallel Seq Scan on streams_2026_06 s_1  (cost=0.00..4826.04 rows=161603 width=4) (actual time=0.016..9.454 rows=91575.00 loops=3)
+                                      Filter: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                                      Buffers: shared hit=2806
+                          ->  Parallel Hash  (cost=10130.00..10130.00 rows=111725 width=4) (actual time=37.149..37.149 rows=88998.00 loops=3)
+                                Buckets: 524288  Batches: 1  Memory Usage: 14560kB
+                                Buffers: shared read=7005
+                                ->  Parallel Seq Scan on users u  (cost=0.00..10130.00 rows=111725 width=4) (actual time=0.057..22.697 rows=88998.00 loops=3)
+                                      Filter: ((subscription)::text = 'FREE'::text)
+                                      Rows Removed by Filter: 111002
+                                      Buffers: shared read=7005
+Planning:
+  Buffers: shared hit=713 read=14
+Planning Time: 2.012 ms
+Execution Time: 128.156 ms
+=== R17 run 2 ===
+Sort  (cost=26996.98..27020.91 rows=9572 width=12) (actual time=120.137..120.444 rows=324.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 35kB
+  Buffers: shared hit=3091 read=6723
+  ->  Finalize HashAggregate  (cost=26005.09..26364.05 rows=9572 width=12) (actual time=113.844..120.382 rows=324.00 loops=1)
+        Group Key: s.user_id
+        Filter: (count(*) >= 4)
+        Batches: 1  Memory Usage: 5913kB
+        Rows Removed by Filter: 97816
+        Buffers: shared hit=3088 read=6723
+        ->  Gather  (cost=18481.22..25660.49 rows=68921 width=12) (actual time=85.147..95.014 rows=113318.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=3088 read=6723
+              ->  Partial HashAggregate  (cost=17481.22..17768.39 rows=28717 width=12) (actual time=82.848..86.542 rows=37772.67 loops=3)
+                    Group Key: s.user_id
+                    Batches: 1  Memory Usage: 2585kB
+                    Buffers: shared hit=3088 read=6723
+                    Worker 0:  Batches: 1  Memory Usage: 2585kB
+                    Worker 1:  Batches: 1  Memory Usage: 2585kB
+                    ->  Parallel Hash Join  (cost=11526.56..17225.44 rows=51156 width=4) (actual time=33.210..73.710 rows=40712.67 loops=3)
+                          Hash Cond: (s.user_id = u.user_id)
+                          Buffers: shared hit=3088 read=6723
+                          ->  Parallel Append  (cost=0.00..5398.39 rows=114471 width=4) (actual time=0.061..15.212 rows=91575.00 loops=3)
+                                Buffers: shared hit=2806
+                                ->  Seq Scan on streams_2026_07 s_2  (cost=0.00..0.00 rows=1 width=4) (actual time=0.081..0.081 rows=0.00 loops=1)
+                                      Filter: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                                ->  Seq Scan on streams_other s_3  (cost=0.00..0.00 rows=1 width=4) (actual time=0.077..0.077 rows=0.00 loops=1)
+                                      Filter: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                                ->  Parallel Seq Scan on streams_2026_06 s_1  (cost=0.00..4826.04 rows=161603 width=4) (actual time=0.007..9.327 rows=91575.00 loops=3)
+                                      Filter: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                                      Buffers: shared hit=2806
+                          ->  Parallel Hash  (cost=10130.00..10130.00 rows=111725 width=4) (actual time=32.904..32.904 rows=88998.00 loops=3)
+                                Buckets: 524288  Batches: 1  Memory Usage: 14592kB
+                                Buffers: shared hit=282 read=6723
+                                ->  Parallel Seq Scan on users u  (cost=0.00..10130.00 rows=111725 width=4) (actual time=0.075..21.542 rows=88998.00 loops=3)
+                                      Filter: ((subscription)::text = 'FREE'::text)
+                                      Rows Removed by Filter: 111002
+                                      Buffers: shared hit=282 read=6723
+Planning:
+  Buffers: shared hit=727
+Planning Time: 1.782 ms
+Execution Time: 120.628 ms
+=== R17 run 3 ===
+Sort  (cost=26996.98..27020.91 rows=9572 width=12) (actual time=110.743..110.983 rows=324.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 35kB
+  Buffers: shared hit=3373 read=6441
+  ->  Finalize HashAggregate  (cost=26005.09..26364.05 rows=9572 width=12) (actual time=105.500..110.930 rows=324.00 loops=1)
+        Group Key: s.user_id
+        Filter: (count(*) >= 4)
+        Batches: 1  Memory Usage: 5913kB
+        Rows Removed by Filter: 97816
+        Buffers: shared hit=3370 read=6441
+        ->  Gather  (cost=18481.22..25660.49 rows=68921 width=12) (actual time=77.541..86.984 rows=113513.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=3370 read=6441
+              ->  Partial HashAggregate  (cost=17481.22..17768.39 rows=28717 width=12) (actual time=74.964..78.382 rows=37837.67 loops=3)
+                    Group Key: s.user_id
+                    Batches: 1  Memory Usage: 2585kB
+                    Buffers: shared hit=3370 read=6441
+                    Worker 0:  Batches: 1  Memory Usage: 2585kB
+                    Worker 1:  Batches: 1  Memory Usage: 2585kB
+                    ->  Parallel Hash Join  (cost=11526.56..17225.44 rows=51156 width=4) (actual time=32.537..67.018 rows=40712.67 loops=3)
+                          Hash Cond: (s.user_id = u.user_id)
+                          Buffers: shared hit=3370 read=6441
+                          ->  Parallel Append  (cost=0.00..5398.39 rows=114471 width=4) (actual time=0.083..14.363 rows=91575.00 loops=3)
+                                Buffers: shared hit=2806
+                                ->  Seq Scan on streams_2026_07 s_2  (cost=0.00..0.00 rows=1 width=4) (actual time=0.111..0.111 rows=0.00 loops=1)
+                                      Filter: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                                ->  Seq Scan on streams_other s_3  (cost=0.00..0.00 rows=1 width=4) (actual time=0.105..0.105 rows=0.00 loops=1)
+                                      Filter: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                                ->  Parallel Seq Scan on streams_2026_06 s_1  (cost=0.00..4826.04 rows=161603 width=4) (actual time=0.010..8.472 rows=91575.00 loops=3)
+                                      Filter: (started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+                                      Buffers: shared hit=2806
+                          ->  Parallel Hash  (cost=10130.00..10130.00 rows=111725 width=4) (actual time=32.218..32.218 rows=88998.00 loops=3)
+                                Buckets: 524288  Batches: 1  Memory Usage: 14624kB
+                                Buffers: shared hit=564 read=6441
+                                ->  Parallel Seq Scan on users u  (cost=0.00..10130.00 rows=111725 width=4) (actual time=0.070..20.989 rows=88998.00 loops=3)
+                                      Filter: ((subscription)::text = 'FREE'::text)
+                                      Rows Removed by Filter: 111002
+                                      Buffers: shared hit=564 read=6441
+Planning:
+  Buffers: shared hit=727
+Planning Time: 1.792 ms
+Execution Time: 111.166 ms

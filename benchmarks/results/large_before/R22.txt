@@ -1,0 +1,54 @@
+=== R22 run 1 ===
+Sort  (cost=173754.74..174609.85 rows=342046 width=16) (actual time=778.218..779.468 rows=36000.00 loops=1)
+  Sort Key: (count(*)) DESC, playlist_id
+  Sort Method: quicksort  Memory: 2662kB
+  Buffers: shared hit=5414 read=23288 written=4645
+  ->  GroupAggregate  (cost=0.43..136465.66 rows=342046 width=16) (actual time=0.649..774.553 rows=36000.00 loops=1)
+        Group Key: playlist_id, track_id
+        Filter: (count(*) > 1)
+        Rows Removed by Filter: 2328008
+        Buffers: shared hit=5408 read=23288 written=4645
+        ->  Index Only Scan using idx_playlist_tracks_playlist_track on playlist_tracks  (cost=0.43..105638.86 rows=2400008 width=8) (actual time=0.542..414.332 rows=2400008.00 loops=1)
+              Heap Fetches: 2211922
+              Index Searches: 1
+              Buffers: shared hit=5408 read=23288 written=4645
+Planning:
+  Buffers: shared hit=109 read=3
+Planning Time: 0.869 ms
+Execution Time: 780.744 ms
+=== R22 run 2 ===
+Sort  (cost=173754.74..174609.85 rows=342046 width=16) (actual time=723.782..725.039 rows=36000.00 loops=1)
+  Sort Key: (count(*)) DESC, playlist_id
+  Sort Method: quicksort  Memory: 2662kB
+  Buffers: shared hit=6802 read=21900
+  ->  GroupAggregate  (cost=0.43..136465.66 rows=342046 width=16) (actual time=0.211..720.216 rows=36000.00 loops=1)
+        Group Key: playlist_id, track_id
+        Filter: (count(*) > 1)
+        Rows Removed by Filter: 2328008
+        Buffers: shared hit=6796 read=21900
+        ->  Index Only Scan using idx_playlist_tracks_playlist_track on playlist_tracks  (cost=0.43..105638.86 rows=2400008 width=8) (actual time=0.066..366.177 rows=2400008.00 loops=1)
+              Heap Fetches: 2211922
+              Index Searches: 1
+              Buffers: shared hit=6796 read=21900
+Planning:
+  Buffers: shared hit=109 read=3
+Planning Time: 0.658 ms
+Execution Time: 726.308 ms
+=== R22 run 3 ===
+Sort  (cost=173754.74..174609.85 rows=342046 width=16) (actual time=718.460..719.682 rows=36000.00 loops=1)
+  Sort Key: (count(*)) DESC, playlist_id
+  Sort Method: quicksort  Memory: 2662kB
+  Buffers: shared hit=7518 read=21184
+  ->  GroupAggregate  (cost=0.43..136465.66 rows=342046 width=16) (actual time=0.162..715.112 rows=36000.00 loops=1)
+        Group Key: playlist_id, track_id
+        Filter: (count(*) > 1)
+        Rows Removed by Filter: 2328008
+        Buffers: shared hit=7512 read=21184
+        ->  Index Only Scan using idx_playlist_tracks_playlist_track on playlist_tracks  (cost=0.43..105638.86 rows=2400008 width=8) (actual time=0.064..365.953 rows=2400008.00 loops=1)
+              Heap Fetches: 2211922
+              Index Searches: 1
+              Buffers: shared hit=7512 read=21184
+Planning:
+  Buffers: shared hit=95 read=17
+Planning Time: 1.340 ms
+Execution Time: 720.978 ms

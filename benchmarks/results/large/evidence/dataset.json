@@ -1,0 +1,52 @@
+{
+  "albums": {
+    "csv_rows": 240000,
+    "bytes": 16555572,
+    "sha256": "5825885e81b8a42380c034fe26656e076b5229521284678a7548802b4dbe4d24"
+  },
+  "artist_follows": {
+    "csv_rows": 1399801,
+    "bytes": 53393920,
+    "sha256": "fb0f3a5db58e84278aac01919dfb8afd6682687f0a8882403b96b66037d832a1"
+  },
+  "artists": {
+    "csv_rows": 60000,
+    "bytes": 3965389,
+    "sha256": "ba300ffafcd786ad6345cd7c539d939015fbc009bb5e71589f08bd8df7122b96"
+  },
+  "liked_tracks": {
+    "csv_rows": 1171457,
+    "bytes": 46867193,
+    "sha256": "0d202767e673f4635c7451897ba901aaba502cb923824530b92c572eb83faee0"
+  },
+  "playlist_tracks": {
+    "csv_rows": 2400008,
+    "bytes": 116576975,
+    "sha256": "8029e53720c73bfdbbcaa0a3fc971794b413435f7421e71b89c39ba3866ef093"
+  },
+  "playlists": {
+    "csv_rows": 200000,
+    "bytes": 11951342,
+    "sha256": "6f04dde4d9d58eb4d869880ee54cf4abb4ec0107adbf5e7b8cb782323e7e45bd"
+  },
+  "streams": {
+    "csv_rows": 5000000,
+    "bytes": 378533217,
+    "sha256": "1404e11b6b307bb51d0d0e379546bd7cc5d267826b188a25908b119ef398cd77"
+  },
+  "track_artists": {
+    "csv_rows": 1554720,
+    "bytes": 32400765,
+    "sha256": "e23ca3caf4d58c2232c041df4ce1009f6c424b82cdd2b290a040fb72241d0ca8"
+  },
+  "tracks": {
+    "csv_rows": 1360381,
+    "bytes": 78467831,
+    "sha256": "55246e18c1e5592e3d3ea2010886aaf642fe22ab64ac44a69427b1b202da53a6"
+  },
+  "users": {
+    "csv_rows": 600000,
+    "bytes": 54131898,
+    "sha256": "eb950fc8e84b7d107e763d11128df2dfd4fc9013cf0289936d7742b926f019df"
+  }
+}
