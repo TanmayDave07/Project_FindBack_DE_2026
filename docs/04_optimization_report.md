@@ -274,6 +274,7 @@ The original NOT IN query and optimized NOT EXISTS query were compared.
 | Original NOT IN | 0 |
 | Optimized NOT EXISTS | 1891 |
 
+
 The streams subquery contains NULL playlist_id values. NOT IN can therefore
 evaluate to UNKNOWN and incorrectly return no playlists.
 NOT EXISTS correctly checks for a matching stream for each public playlist.
